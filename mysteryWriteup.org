@@ -21,10 +21,77 @@
    than B.
 
 ** The Solution
-   #+begin_src cpp :includes '(<iostream> <cstdlib>) :flags -std=c++11
+*** Answer 1
+    #+begin_src cpp :includes '(<iostream> <cstdlib>) :flags -std=c++11
+      using namespace std;
+
+      void floorAvg(int a, int b, int *solution);
+
+      int main(void)
+      {
+        int a = rand() % 100 + 1;
+        int b = rand() % 10 + 1;
+        if (a < b){
+          int t = a;
+          a = b;
+          b = t;
+        }
+        int solution[b];
+        cout << "a: " << a << endl;
+        cout << "b: " << b << endl;
+        floorAvg (a, b, solution);
+        for (int i = 0; i < b; i++) {
+          cout << "bin " << (i + 1) << " = " << solution[i] << endl;
+        }
+      }
+
+      void floorAvg(int a, int b, int *solution)
+      {
+        int avg = a/b;
+        int mod = a%b;
+
+        if (b % 2 == 1) //when odd
+          {
+            int offset = -(b / 2);
+            for (int i = 0; i < b; i++, offset++) //loop b times, include the num avg
+              {
+                solution[i] = avg + offset;
+              } //average of the solution set is equal to avg
+          }
+
+        else //when even
+          {
+            int offset = 1;
+            //loop b times, exclude the num avg
+            for (int i = 0; i < b; i += 2, offset++)
+              {
+                solution[i] = avg - offset;
+                solution[i+1] = avg + offset;
+              } //average of the solution set is equal to avg
+          }
+
+        solution[b-1] += mod; //increase the highest number to reach A
+      }
+    #+end_src
+
+    #+RESULTS:
+    | a:  | 42 |   |    |
+    | b:  |  8 |   |    |
+    | bin |  1 | = |  4 |
+    | bin |  2 | = |  6 |
+    | bin |  3 | = |  3 |
+    | bin |  4 | = |  7 |
+    | bin |  5 | = |  2 |
+    | bin |  6 | = |  8 |
+    | bin |  7 | = |  1 |
+    | bin |  8 | = | 11 |
+*** Answer 2
+    #+begin_src cpp
+    #+end_src
+    #+begin_src cpp :includes '(<iostream> <cstdlib>) :flags -std=c++11
      using namespace std;
 
-     void floorAvg(int a, int b, int *solution);
+     void calcSln(int a, int b, int *solution);
 
      int main(void)
      {
@@ -38,13 +105,13 @@
        int solution[b];
        cout << "a: " << a << endl;
        cout << "b: " << b << endl;
-       floorAvg (a, b, solution);
+       calcSln (a, b, solution);
        for (int i = 0; i < b; i++) {
          cout << "bin " << (i + 1) << " = " << solution[i] << endl;
        }
      }
 
-     void floorAvg(int a, int b, int *solution)
+     void calcSln(int a, int b, int *solution)
      {
        int avg = a/b;
        int mod = a%b;
@@ -71,19 +138,19 @@
 
        solution[b-1] += mod; //increase the highest number to reach A
      }
-   #+end_src
+    #+end_src
 
-   #+RESULTS:
-   | a:  | 42 |   |    |
-   | b:  |  8 |   |    |
-   | bin |  1 | = |  4 |
-   | bin |  2 | = |  6 |
-   | bin |  3 | = |  3 |
-   | bin |  4 | = |  7 |
-   | bin |  5 | = |  2 |
-   | bin |  6 | = |  8 |
-   | bin |  7 | = |  1 |
-   | bin |  8 | = | 11 |
+    #+RESULTS:
+    | a:  | 42 |   |    |
+    | b:  |  8 |   |    |
+    | bin |  1 | = |  4 |
+    | bin |  2 | = |  6 |
+    | bin |  3 | = |  3 |
+    | bin |  4 | = |  7 |
+    | bin |  5 | = |  2 |
+    | bin |  6 | = |  8 |
+    | bin |  7 | = |  1 |
+    | bin |  8 | = | 11 |
 
 * What Is The Answer?
     In this new version of Scrabble ...
