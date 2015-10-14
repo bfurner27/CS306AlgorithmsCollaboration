@@ -1,1 +1,226 @@
-This is the mystery writeup
+#+TITLE: Mysteriousness Writeup
+#+AUTHOR: Daniel Miller
+#+EMAIL:  mil12010@byui.edu
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+
+* Breaking Up Is Hard To Do
+** The Problem
+   Given two positive numbers A and B, where A is not equal to B,
+   find a way to /break up/ the larger of the two numbers (call it A)
+   into B unequal pieces. 
+   For example, if A = 34 and B = 4, then four
+   unequal pieces of A are 6, 7, 9 and 12. These are unequal because
+   there are no duplicate numbers. They break up (or sum up to) 34
+   because 6 + 7 + 9 + 12 = 34. The numbers representing the pieces
+   (e.g., 6, 7, 9 and 12) must be positive integers (1, 2, 3, etc.),
+   which excludes zero.  Note that some pairs of numbers don't work,
+   e.g., 5 and 3. 
+   Omit the uninteresting part of the algorithm, that
+   is, the part that would enforce the assumption that A is larger
+   than B.
+
+** The Solution
+   #+begin_src cpp :includes '(<iostream> <cstdlib>) :flags -std=c++11
+     using namespace std;
+
+     void floorAvg(int a, int b, int *solution);
+
+     int main(void)
+     {
+       int a = rand() % 100 + 1;
+       int b = rand() % 10 + 1;
+       if (a < b){
+         int t = a;
+         a = b;
+         b = t;
+       }
+       int solution[b];
+       cout << "a: " << a << endl;
+       cout << "b: " << b << endl;
+       floorAvg (a, b, solution);
+       for (int i = 0; i < b; i++) {
+         cout << "bin " << (i + 1) << " = " << solution[i] << endl;
+       }
+     }
+
+     void floorAvg(int a, int b, int *solution)
+     {
+       int avg = a/b;
+       int mod = a%b;
+
+       if (b % 2 == 1) //when odd
+         {
+           int offset = -(b / 2);
+           for (int i = 0; i < b; i++, offset++) //loop b times, include the num avg
+             {
+               solution[i] = avg + offset;
+             } //average of the solution set is equal to avg
+         }
+
+       else //when even
+         {
+           int offset = 1;
+           //loop b times, exclude the num avg
+           for (int i = 0; i < b; i += 2, offset++)
+             {
+               solution[i] = avg - offset;
+               solution[i+1] = avg + offset;
+             } //average of the solution set is equal to avg
+         }
+
+       solution[b-1] += mod; //increase the highest number to reach A
+     }
+   #+end_src
+
+   #+RESULTS:
+   | a:  | 42 |   |    |
+   | b:  |  8 |   |    |
+   | bin |  1 | = |  4 |
+   | bin |  2 | = |  6 |
+   | bin |  3 | = |  3 |
+   | bin |  4 | = |  7 |
+   | bin |  5 | = |  2 |
+   | bin |  6 | = |  8 |
+   | bin |  7 | = |  1 |
+   | bin |  8 | = | 11 |
+
+* What Is The Answer?
+    In this new version of Scrabble ...
+    - Letter values are all positive integers (zero not allowed).
+    - Each vowel has a different numeric value.
+    - Each consonant has a different numeric value.
+    - A vowel can have the same value as a consonant.
+    - Word scores are computed by adding up the vowel values, adding up the consonant values, and multiplying these two sums together.
+
+    Given these word scores ...
+    |       |   |     |   |   |         |   |    |   |   |       |   |     |
+    | PLUM  | = |  36 |   |   | PLUME   | = | 48 |   |   | MELT  | = |  15 |
+    | ROME  | = |  98 |   |   | SAVE    | = | 51 |   |   | WEST  | = |  20 |
+    | LAME  | = |  18 |   |   | PLANE   | = | 39 |   |   | VIPER | = | 150 |
+    | PIPER | = | 110 |   |   | OUT     | = | 81 |   |   | GREET | = |  40 |
+    | MELBA | = |  51 |   |   | WESTERN | = | 70 |   |   | PAPER | = |  66 |
+    ... what is the score of the following "word"?
+#+BEGIN_CENTER
+=PROBLEMSOLVING=
+#+END_CENTER
+* What Is The Question?
+
+  Whatever it is, it was inspired by the [[http://scriptures.lds.org/en/abr/fac_2][Book of Abraham, Facsimile No. 2, explanation of Figure 11]].
+
+  /If the student can find out these numbers, so let it be .../
+
+  | 8247830262 |
+  | 7812996882 |
+  | 1363377798 |
+  | 1314834207 |
+  | 2153753129 |
+  | 6332798584 |
+  | 4378329335 |
+  | 8483580777 |
+  | 9899336077 |
+  | 3201725555 |
+* What is True?
+#+BEGIN_SRC emacs-lisp
+(defun what-is-true-about-my-engagement-with-mysteriousness ()
+  "If need be, replace a 100 with a smaller number to reflect how much you feel you deserve."
+  (vector
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true of my experience in general?                              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["I had fun." 100]
+["I collaborated with the classmates in my cohort." 100]
+["I learned something new." 100]
+["I achieved something meaningful, or something I can build upon at a later time." 100]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true of my report on what I learned?                            ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["I learned the basics of emacs 'org' mode in order to write it." 100]
+["I learned through writing it how to write a little better." 100]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true of the mechanical "infelicities" (misspelled words,        ;;
+;; grammatical errors, punctuation errors) in my report on what I learned? ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["There are fewer than four." 100]
+["There are fewer than three." 100]
+["There are fewer than two." 100]
+["There are none." 100]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is otherwise true of the quality of the information in my report?  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["Each detail contributes to the report's purpose, with no distracting, extraneous information." 100]
+["There are no unstated assumptions, and the arguments are logical and concise." 100]
+["As confirmed by having someone not in my cohort read it, the reader can readily see what is going on in my head." 100]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is otherwise true of the organization of my report?                ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["My report's information is presented in a logical sequence, easily followed." 100]
+["My report has a strong introduction, clearly stating the goal of this exploration." 100]
+["My report has a strong conclusion, summarizing my analysis." 100]
+["My report has pithy headings to guide the information flow." 100]
+["The information flow in my report has engaging transitions that entice the reader to read further." 100]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true about my meeting explicit requirements?                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["I discussed my algorithms only at a high level, avoiding tedious descriptions of their details." 100]
+["I discovered/created/reported on one explicit compare/contrast criterion for Problem 1." 100]
+["I discovered/created/reported on two explicit compare/contrast criteria for Problem 1." 100]
+["I discovered/created/reported on three explicit compare/contrast criteria for Problem 1." 100]
+["I discovered/created/reported on one explicit compare/contrast criterion for Problem 2." 100]
+["I discovered/created/reported on two explicit compare/contrast criteria for Problem 2." 100]
+["I discovered/created/reported on three explicit compare/contrast criteria for Problem 2." 100]
+["I discovered/created/reported on one explicit compare/contrast criterion for Problem 3." 100]
+["I discovered/created/reported on two explicit compare/contrast criteria for Problem 3." 100]
+["I discovered/created/reported on three explicit compare/contrast criteria for Problem 3." 100]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; On page 103 of his book /The Sense of Style/, Steven Pinker said:        ;;
+;;                                                                          ;;
+;; As with any form of mental self-improvement, you must learn to turn      ;;
+;; your gaze inward, concentrate on processes that usually run              ;;
+;; automatically, and try to wrest control of them so that you can apply    ;;
+;; them more mindfully.                                                     ;;
+;;                                                                          ;;
+;; What is true about the introspection I did in coming up with algorithmic ;;
+;; solutions to these problems, especially the third?                       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["For Problem 1, I learned to apply more mindfully mental processes that usually run automatically." 100]
+["For Problem 1, I supplied ample evidence of my introspection." 100]
+["For Problem 2, I learned to apply more mindfully mental processes that usually run automatically." 100]
+["For Problem 2, I supplied ample evidence of my introspection." 100]
+["For Problem 3, I learned to apply more mindfully mental processes that usually run automatically." 100]
+["For Problem 3, I supplied ample evidence of my introspection by discussing metacognitive miscalibration, and the orders of ignorance." 100]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; As quoted in J. Hartmanis /On computational complexity and the nature     ;;
+;; of computer science/ published in the /Communications of the ACM 37/,     ;;
+;; 10 (1994), 39, Donald Knuth said:                                         ;;
+;;                                                                           ;;
+;; Computer Science and Engineering is a field that attracts a different     ;;
+;; kind of thinker. I believe that one who is a natural computer             ;;
+;; scientist thinks algorithmically. Such people are especially good at      ;;
+;; dealing with situations where different rules apply in different          ;;
+;; cases; they are individuals who can rapidly change levels of abstraction, ;;
+;; simultaneously seeing things "in the large" and "in the small."           ;;
+;;                                                                           ;;
+;; What is true about my algorithmic thinking, or aspirations thereto?       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["I discussed to what extent I am or desire to get good at dealing with situations where different rules apply in different cases." 100]
+["I discussed to what extent I am or desire to be able to rapidly change levels of abstraction." 100]
+["I discussed to what extent I can or desire to simultaneously see things in the large and in the small." 100]
+
+))
+#+END_SRC
