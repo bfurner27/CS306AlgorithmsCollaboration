@@ -212,6 +212,12 @@
 =PROBLEMSOLVING=
 #+END_CENTER
 ** The Solution
+*** solution 1
+  #+begin_src Psudocode
+
+  #+end_src
+*** solution 2
+*** solution 3   
 * What Is The Question?
 ** The Problem
   Whatever it is, it was inspired by the [[http://scriptures.lds.org/en/abr/fac_2][Book of Abraham, Facsimile No. 2, explanation of Figure 11]].
