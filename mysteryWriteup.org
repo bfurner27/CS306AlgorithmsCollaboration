@@ -4,6 +4,10 @@
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
 
+* Writeup
+** What I Learned
+*** Introduction
+*** My Quest for Knowledge
 * Breaking Up Is Hard To Do
 ** The Problem
    Given two positive numbers A and B, where A is not equal to B,
@@ -86,8 +90,6 @@
     | bin |  7 | = |  1 |
     | bin |  8 | = | 11 |
 *** Answer 2
-    #+begin_src cpp
-    #+end_src
     #+begin_src cpp :includes '(<iostream> <cstdlib>) :flags -std=c++11
      using namespace std;
 
@@ -103,6 +105,9 @@
          b = t;
        }
        int solution[b];
+       for (int i = 0; i < b; i++) {
+         solution[i] = 0;
+       }
        cout << "a: " << a << endl;
        cout << "b: " << b << endl;
        calcSln (a, b, solution);
@@ -113,46 +118,81 @@
 
      void calcSln(int a, int b, int *solution)
      {
-       int avg = a/b;
-       int mod = a%b;
+       if (a < (((b * b) + b) / 2) || a < 0 || b < 0)
+         return;
 
-       if (b % 2 == 1) //when odd
-         {
-           int offset = -(b / 2);
-           for (int i = 0; i < b; i++, offset++) //loop b times, include the num avg
-             {
-               solution[i] = avg + offset;
-             } //average of the solution set is equal to avg
-         }
-
-       else //when even
-         {
-           int offset = 1;
-           //loop b times, exclude the num avg
-           for (int i = 0; i < b; i += 2, offset++)
-             {
-               solution[i] = avg - offset;
-               solution[i+1] = avg + offset;
-             } //average of the solution set is equal to avg
-         }
-
-       solution[b-1] += mod; //increase the highest number to reach A
+       for (int i = 0; i < (b - 1); i++) {
+         solution[i] = (i + 1);
+       }
+       solution[b - 1] = a - ((((b - 1) * (b - 1) + (b - 1)) / 2));
      }
     #+end_src
 
     #+RESULTS:
     | a:  | 42 |   |    |
     | b:  |  8 |   |    |
-    | bin |  1 | = |  4 |
-    | bin |  2 | = |  6 |
+    | bin |  1 | = |  1 |
+    | bin |  2 | = |  2 |
     | bin |  3 | = |  3 |
-    | bin |  4 | = |  7 |
-    | bin |  5 | = |  2 |
-    | bin |  6 | = |  8 |
-    | bin |  7 | = |  1 |
-    | bin |  8 | = | 11 |
+    | bin |  4 | = |  4 |
+    | bin |  5 | = |  5 |
+    | bin |  6 | = |  6 |
+    | bin |  7 | = |  7 |
+    | bin |  8 | = | 14 |
+
+*** Answer 3
+    #+begin_src cpp :includes '(<iostream> <cstdlib>) :flags -std=c++11
+     using namespace std;
+
+     void calcSln(int a, int b, int *solution);
+
+     int main(void)
+     {
+       int a = rand() % 100 + 1;
+       int b = rand() % 10 + 1;
+       if (a < b){
+         int t = a;
+         a = b;
+         b = t;
+       }
+       int solution[b];
+       for (int i = 0; i < b; i++) {
+         solution[i] = 0;
+       }
+       cout << "a: " << a << endl;
+       cout << "b: " << b << endl;
+       calcSln (a, b, solution);
+       for (int i = 0; i < b; i++) {
+         cout << "bin " << (i + 1) << " = " << solution[i] << endl;
+       }
+     }
+
+     void calcSln(int a, int b, int *solution)
+     {
+       int c = b - 1;
+       if (a < (((b * b) + b) / 2) || a < 0 || b < 0)
+         return;
+       solution[0] = a - (((c * c) + c) / 2);
+       for (int i = 1; i < b; i++) {
+         solution[i] = i;
+       }
+     }
+    #+end_src
+
+    #+RESULTS:
+    | a:  | 42 |   |    |
+    | b:  |  8 |   |    |
+    | bin |  1 | = | 14 |
+    | bin |  2 | = |  1 |
+    | bin |  3 | = |  2 |
+    | bin |  4 | = |  3 |
+    | bin |  5 | = |  4 |
+    | bin |  6 | = |  5 |
+    | bin |  7 | = |  6 |
+    | bin |  8 | = |  7 |
 
 * What Is The Answer?
+** The Problem
     In this new version of Scrabble ...
     - Letter values are all positive integers (zero not allowed).
     - Each vowel has a different numeric value.
@@ -171,8 +211,9 @@
 #+BEGIN_CENTER
 =PROBLEMSOLVING=
 #+END_CENTER
+** The Solution
 * What Is The Question?
-
+** The Problem
   Whatever it is, it was inspired by the [[http://scriptures.lds.org/en/abr/fac_2][Book of Abraham, Facsimile No. 2, explanation of Figure 11]].
 
   /If the student can find out these numbers, so let it be .../
@@ -187,6 +228,149 @@
   | 8483580777 |
   | 9899336077 |
   | 3201725555 |
+** The Solution
+*** Answer 1
+#+begin_src pseudocode
+function BruteForce
+for 0 to wordList.size choose 20
+    currentCombination <= nextCombination(wordList, 20, currentCombination)
+    for 0 to 20!
+        currentPermutation <= nextPermutation(currentCombination, currentPermutations)
+        found <= testString(currentPermutation)
+        if found == true
+            return currentPermutation
+END
+
+//nextCombination returns the next combination in the sequence, if at the last combination, 
+//it will wrap around to the first combination. While it's implementation
+//is not trivial, there are several different algorithms to accomplish the task, and 
+//showing a sample implmentation would detract from the algorithm on topic.
+//nextPermutation is as above, but with permutations instead of combinations.
+
+
+//Brute Force approach given the hints. The hints in this instance would be an
+//array indexed by length of word, containing the number of words in the question
+//that have that length.
+
+function BruteForceWithHints
+for each string word in wordList
+    wordBucketsByLength[length of word] add word
+
+for 0 to wordList.size choose 20
+    currentCombinationSet <= incrementCombination(wordBucketsByLength, currentCombination, 0)
+        
+    for 0 to 20!
+        currentPermutation <= nextPermutation(currentCombination, currentPermutations)
+        found <= testString(currentPermutation)
+        if found == true
+            return currentPermutation
+END
+
+function incrementCombination (wordBuckets, currentCombinationSet, bucketToIncrement)
+if currentCombintionSet indexed by bucketToIncrement is atLastWord
+    if bucketToIncrement equals 19
+        return false
+    incrementCombintion(wordBuckets, currentCombination, bucketToIncrement)
+    
+currentCombinationSet indexed by bucketToIncrement <= 
+nextCombination(wordBuckets indexed by bucketToIncrement, hints indexed by bucketToIncrement, 
+            currentCombinationSet indexed by bucketToIncrement)
+END
+
+/////////////////////////////////////////////////////////////////////////////////////////////                  
+function BruteForceWithHintsAndModals
+
+possibleModals <= intersectionOf(modalVerbList, wordList)
+for each string modalVerb in possibleModals
+    hints <= hints indexed by modalVerb.length - 1
+    remove modalVerb from wordList
+    for each string word in wordList
+        wordBucketsByLength[length of word] add word
+
+    for 0 to wordList.size choose 20
+        currentCombinationSet <= incrementCombination(wordBucketsByLength, currentCombination, 0)
+        
+        for 0 to 20!
+            currentPermutation <= nextPermutation(currentCombination, currentPermutations)
+            found <= testString(currentPermutation)
+            if found == true
+                return currentPermutation
+    add modalVerb to wordList
+    hints <= hints indexed by modalVerb.length + 1
+END
+
+function incrementCombination (wordBuckets, currentCombinationSet, bucketToIncrement)
+if currentCombintionSet indexed by bucketToIncrement is atLastWord
+    if bucketToIncrement equals 19
+        return false
+    incrementCombintion(wordBuckets, currentCombination, bucketToIncrement)
+    
+currentCombinationSet indexed by bucketToIncrement <= 
+nextCombination(wordBuckets indexed by bucketToIncrement, hints indexed by bucketToIncrement, 
+            currentCombinationSet indexed by bucketToIncrement)
+END
+#+end_src
+*** Answer 2
+#+begin_src pseudocode
+function bruteForceSolver
+for 0 to 
+((25!/(25-number of consonates)! *
+(25!/(25-number of vowels)!)
+
+vowelPermutations <= 
+           nextPermutation(vowels, 25)
+consonatesPermutation <= 
+           nextPermutation(consonates, 25)
+
+if isCorrect(vowelPermutation, 
+    consonatePermutation) == true
+solveProblemWord(vowelPermutation, 
+                         consonatePermutation)
+
+//nextPermutation returns a permutation of length input 1 and max value of input 2.
+#+end_src
+*** Answer 3
+#+begin_src pseudocode
+Function shallowThenBrute
+for each string word in strings
+    numVowels <- countVowels(word)
+    numConsonants <- countConsonants(word)
+    factors = factorize(knownValues indexed by word)
+
+    for each integer factor in factors
+        addItemsToSet(possConsonateValues, breakUp(factor, numConsonants))
+        addItemsToSet(possVowelValues, breakUp(factor, numVowels))
+    
+    for each char letter in word
+        if letter is vowel
+           intersectSets(values[(int cast of letter)], possVowelValues)
+        else
+           intersectSets(values[(int cast of letter)], possConsonateValues)
+
+while not done
+vowelPermutations <= 
+           nextPermutation(vowels, possVowelValues)
+consonatesPermutation <= 
+           nextPermutation(consonates, possConsonateValues)
+
+if isCorrect(vowelPermutation, 
+    consonatePermutation) == true
+solveProblemWord(vowelPermutation, 
+                         consonatePermutation)
+break loop
+END
+
+//Uses the first pass to narrow the search down greatly, and then
+//creates permutations to try based on the ramining possible values
+//for each letter. Since we are also enforcing uniqueness
+//amoung the vowels an the consonates, it is very difficult
+//to tell how many iterations of permuations it will
+//take to find the answer.
+
+//nextPermutation in this case creates a permuation of length input 1
+//using only values for each unit from input 2. It returns a valid permutation
+//without repetition.
+#+end_src
 * What is True?
 #+BEGIN_SRC emacs-lisp
 (defun what-is-true-about-my-engagement-with-mysteriousness ()
