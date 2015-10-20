@@ -213,11 +213,34 @@
 #+END_CENTER
 ** The Solution
 *** solution 1
-  #+begin_src Psudocode
+ #+begin_src Psudocode
 
   #+end_src
 *** solution 2
+ #+begin_src Psudocode
+FOR: all permutations of the 26 letters and 26 numbers
+  FOR: loop through all 26 letters and assign numbers to one of the permutations
+     IF: the array has the letter at the current spot
+        Assign the letter with the number that worked 
+
+  FOR: go until all the words have been tested
+     IF: the word was equal
+        store result of the letters in the array
+  IF: all words had correct result
+     BREAK LOOP
+  #+end_src
 *** solution 3   
+ #+begin_src Psudocode
+  FOR: all permutations of 26 letters and 26 words
+     FOR: until reach the end of 26 letters
+        assign each letter one of the numbers from one of the permutations
+     FOR: until all words have been tested
+        IF: word works
+           COUNT++
+     IF: all words work or count == 15
+         BREAK LOOP
+ 
+  #+end_src
 * What Is The Question?
 ** The Problem
   Whatever it is, it was inspired by the [[http://scriptures.lds.org/en/abr/fac_2][Book of Abraham, Facsimile No. 2, explanation of Figure 11]].
