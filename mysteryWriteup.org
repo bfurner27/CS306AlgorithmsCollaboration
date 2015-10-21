@@ -218,12 +218,12 @@
   #+end_src
 *** solution 2
  #+begin_src Psudocode
-FOR: all permutations of the 26 letters and 26 numbers
-  FOR: loop through all 26 letters and assign numbers to one of the permutations
+LOOP: all permutations of the 26 letters and 26 numbers
+  LOOP: loop through all 26 letters and assign numbers to one of the permutations
      IF: the array has the letter at the current spot
         Assign the letter with the number that worked 
 
-  FOR: go until all the words have been tested
+  LOOP: go until all the words have been tested
      IF: the word was equal
         store result of the letters in the array
   IF: all words had correct result
@@ -231,10 +231,10 @@ FOR: all permutations of the 26 letters and 26 numbers
   #+end_src
 *** solution 3   
  #+begin_src Psudocode
-  FOR: all permutations of 26 letters and 26 words
-     FOR: until reach the end of 26 letters
+  LOOP: all permutations of 26 letters and 26 words
+     LOOP: until reach the end of 26 letters
         assign each letter one of the numbers from one of the permutations
-     FOR: until all words have been tested
+     LOOP: until all words have been tested
         IF: word works
            COUNT++
      IF: all words work or count == 15
