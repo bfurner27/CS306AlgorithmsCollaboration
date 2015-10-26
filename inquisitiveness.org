@@ -1,1 +1,5 @@
 This will be the first collaboration file for inquisitiveness
+
+Sorts we are using
+n^2 Insertion, Swap
+n log n Merge, Heap
