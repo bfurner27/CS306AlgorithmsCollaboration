@@ -3,3 +3,111 @@ This will be the first collaboration file for inquisitiveness
 Sorts we are using
 n^2 Insertion, Swap
 n log n Merge, Heap
+
+#+begin_src java
+/**************************************************************
+ * Program: SortArray
+ * Author: Benjamin Furner
+ * Description: Will generate, sort and display a list for a user
+ **************************************************************/
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class SortArray {
+    private List<Integer> sortedArray;
+    
+
+    /************
+    * This is the main function, it will be the test/driver program for this class
+    * args - these are the arguments that were input by the user on the command line
+    ******/
+    public static void main(String args[]) {
+
+       int arraySize = 15;
+    	
+       if (args != null) {
+          arraySize = Integer.parseInt(args[0]);
+          System.out.println(args[0]);
+       }
+
+       SortArray sa = new SortArray();
+       sa.driveSort(arraySize);
+
+    }
+
+    /******
+    * This will drive the main sorting program
+    * This will ensure that the values are displayed correctly
+    ******/
+    public void driveSort(int arraySize) {
+
+    	// generate a list that will need to be sorted
+		System.out.println("Unsorted Array");
+		List<Integer> array = new ArrayList<>(); 
+
+		// generate the list of numbers with a psudo random order
+		for (int i = 1; i <= arraySize; i++) {
+			// this will take the unsorted list and will improve it
+		    array.add(((i*52 + 2) % (arraySize * 2) % arraySize));
+		    System.out.print(((i*52 + 2) % (arraySize * 2) % arraySize) + " ");
+		    
+		}
+		System.out.println();
+
+
+    	array = sort(array);
+
+    	System.out.println("Second Array System");
+    	// loop through the vales and display the resulting array
+    	for (Integer i : array)
+    	{
+    		System.out.print(i + " ");
+    	}
+
+    	System.out.println();
+    }
+
+    /*************
+    * This will actually sort the list to what it should be
+    * array - this is the array value that needs to be sorted
+    * return: This will return the assorted array so that it can be verified that it was sorted correctly
+    **********/
+    public List<Integer> sort(List<Integer> array) {
+    	
+    	// create the array that will be sorted
+    	List<Integer> sortedList = new ArrayList<>();
+
+    	// This will loop through the array and will search through and find the smallest value and will
+    	// switch the smallest value with the first item.
+    	int smallestItemIndex = 0;
+    	int j = 0;
+    	for (int i = 0; i < array.size(); i++) {
+    		// This will reset the variables while taking into account that i numbers of values is already
+    		// sorted
+    		j = i;
+    		smallestItemIndex = i;
+
+    		// This will run through the array values to find the smallest index
+    		for ( ; j < array.size(); j++) {
+    			
+    			// check if the value that j is on is smaller than the current smallest value
+    			if (array.get(smallestItemIndex) > array.get(j)) {
+    				smallestItemIndex = j;
+    			}
+    		}
+
+    		// these will swap the i'th element with the smallest item in the remaider of the list
+    		int temp = array.get(i);
+    		array.set(i, array.get(smallestItemIndex));
+    		array.set(smallestItemIndex, temp);
+
+    	}
+
+    	return array;
+    }
+
+
+}
+
+#+end_src
