@@ -4,7 +4,15 @@ Sorts we are using
 n^2 Insertion, Swap
 n log n Merge, Heap
 
-#+begin_src java
+3 Languages
+Java, C++, elisp
+
+
+n^2 sorts in three different languages
+
+
+* Java Algorithm swap sort
+#+BEGIN_SRC java
 /**************************************************************
  * Program: SortArray
  * Author: Benjamin Furner
@@ -109,5 +117,453 @@ public class SortArray {
 
 
 }
+
+#+end_src
+
+* C++ Algorithm swap sort
+
+#+begin_src c
+
+/******************************************************************
+ * Swap Sort takes two parameters
+ * Description: Takes an array and sorts it based on the swap sort
+ * Author: Benjamin Furner
+ ******************************************************************/
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+//Prototypes
+template <typename T>
+void swapSort(T array[], int sizeArray);
+float sToF(const char * val);
+int   sToI(char * val);
+char checkType(const char * val);
+
+//Test functions
+void testCheckType();
+void testsToF();
+
+/*****************************************************************
+ * int main(int argc, char** argv)
+ * Description: Will drive the program that will run/test the sort
+ *
+ * INPUT:  argc - the number of arguments
+ *         argv - the actual aurguments as a string
+ * OUTPUT: NONE
+ * RETURN: returns a 0 to terminate the program
+ *****************************************************************/
+int main(int argc, char** argv)
+{
+	testsToF();
+	if (argc > 1)
+	{
+		// three check values to see if an array is accurate all the way through
+		char firstElement = checkType(argv[1]);
+		char middleElement = checkType(argv[argc/2]);
+		char lastElement = checkType(argv[argc-1]);
+		cout << "Test Values: " << firstElement << " " << middleElement << " " << lastElement << endl;
+		if (firstElement == 'c' && middleElement == 'c' && lastElement == 'c')
+		{
+			// create the string array based on the values input
+			string * arrayVals = new string[argc - 1];
+			for (int i = 0; i < argc - 1; i++)
+			{
+				cout << argv[i+1] << endl;
+				arrayVals[i] = argv[i+1];
+			}
+			cout << endl;
+
+			// call the swap sort and give it the array size
+			swapSort(arrayVals, argc - 1);
+
+
+			// this will display the array after it has been sorted by the array to show
+			// that it worked correctly
+			cout << "Sorted Array: \n";
+			for (int i = 0; i < argc - 1; i++)
+			{
+				cout << arrayVals[i] << endl;
+			} 
+			cout << endl;
+		}
+		// check if the the elements in the array are integers, if they are then it is most likely that 
+		// all the elements are integers
+		else if (firstElement == 'i' && middleElement == 'i' && lastElement == 'i')
+		{
+			// create the array based on the values input
+			int * arrayVals = new int[argc - 1];
+			for (int i = 0; i < argc - 1; i++)
+			{
+				cout << argv[i+1] << endl;
+				arrayVals[i] = sToI(argv[i+1]);
+			}
+			cout << endl;
+
+			// call the swap sort and give it the array size
+			swapSort(arrayVals, argc - 1);	
+
+			// this will display the array after it has been sorted by the array to show
+			// that it worked correctly
+			cout << "Sorted Array: \n";
+			for (int i = 0; i < argc - 1; i++)
+			{
+				cout << arrayVals[i] << endl;
+			} 
+			cout << endl;		
+		}
+		// check if the elements in the array are float values, the function will return an int if it does not have
+		// a decimal so we have to check if it is mixed
+		else if ((firstElement == 'i' || firstElement == 'd') 
+				&& (middleElement == 'i' || middleElement == 'd') 
+				&& (lastElement == 'i' || lastElement == 'd'))
+		{
+			// create the array based on the values input
+			float * arrayVals = new float[argc - 1];
+			for (int i = 0; i < argc - 1; i++)
+			{
+				cout << argv[i+1] << endl;
+				arrayVals[i] = sToF(argv[i+1]);
+			}
+			cout << endl;
+
+			// call the swap sort and give it the array size
+			swapSort(arrayVals, argc - 1);
+
+			// this will display the array after it has been sorted by the array to show
+			// that it worked correctly
+			cout << "Sorted Array: \n";
+			for (int i = 0; i < argc - 1; i++)
+			{
+				cout << arrayVals[i] << endl;
+			} 
+			cout << endl;
+		}
+		else
+		{
+			cout << "Invalid array input\n";
+			return 0;
+		}
+	}
+	else 
+	{
+		cout << "Command Line Aurgument array expected, input the array on the command line\n";
+	}
+	return 0;
+}
+
+/*******************************************************************
+ * float sToF(char * val, int size)
+ * Description: This will take a character array and will convert it
+ * to a float value
+ *
+ * INPUT: val - this is the value to be converted
+ *        size - size of the character array
+ * OUTPUT: NONE
+ * RETURN: returns the converted float value
+ ********************************************************************/
+float sToF(const char * val)
+{
+	// these are the declared variables that will be needed in this function
+	float convertFloat = 0;
+	bool convertAfterDec = false;
+
+	int i = 0;
+	bool isNegative = false;
+	if (val[i] == '-')
+	{
+		i = 1;
+		isNegative = true;
+	}
+
+	// this will loop through all the float values > 1 and will create the float number
+	for ( ; val[i] && val[i] != '.'; i++)
+	{
+		// this will multiply the answer by 10 to make room for the next 10's number
+		convertFloat *= 10;
+		// adds the value in the array to the value of the float number
+		convertFloat += (val[i] - 48);
+	}
+
+
+	float convertFloatDec = 0;
+	// this will loop through all the decimal values and will convert them
+	float numDivide = 10;
+	if (val[i])
+	{
+		for ( ++i ; val[i]; i++)
+		{
+			// adds the decimal value to the number
+			convertFloatDec += val[i] - 48;
+			// shifts the decimal value over to the left by 10
+			convertFloatDec *= 10;
+			// keep track of how many values to the left it has been shifted to ensure that it
+			// is converted to decimal correctly at the end
+			numDivide *= 10;
+		}
+	}
+
+	// divide by number that was calculated based on how many places to the right it was shifted
+	convertFloatDec /= numDivide;
+
+	// adds the two results together and returns the float number
+	convertFloat += convertFloatDec;
+	if (isNegative)
+	{
+		convertFloat *= -1;
+	}
+	return (convertFloat);
+}
+
+/*******************************************************************************
+ * int sToI(char * val)
+ * Description: This function will take a character array and will convert it into
+ * an integer value
+ *
+ * INPUT:  val - the character array that is to be converted to an int
+ * OUTPUT: NONE
+ * RETURN: returns the integer that has been converted from the string
+ ********************************************************************************/
+int sToI(char * val)
+{
+	int convertedInt = 0;
+	bool isNegative = false;
+	int i = 0;
+	// loop through each value and convert it to the integer representation in base 10
+	// if it is negative it will skip the - sign and will factor it in later
+	if (val[i] == '-')
+	{
+		i = 1;
+		isNegative = true;
+	}
+
+	// loop through and convert the values in the char array to the int values
+	for ( ; val[i]; i++)
+	{
+		convertedInt *= 10;
+		convertedInt += val[i] - 48;
+	}
+
+	// check if it was a negative number, if it was convert it to negative
+	if (isNegative)
+	{
+		convertedInt *= -1;
+	}
+	return convertedInt;
+}
+
+/************************************************************************
+ * char checkType(char * val)
+ * Description: This will check the type and will return a character
+ * signifying the type that it discovered
+ *
+ * INPUT:  val - character array that is passed in with a value in it
+ * OUTPUT: NONE
+ * RETURN: returns a char based on the character type 
+ * 		  c - character array
+ * 		  d - float/decimal
+ *		  i - int
+ *		  u - unknown
+ *************************************************************************/
+char checkType(const char * val)
+{
+	// start with the assumption that this value is undefined or an empty array was passed in
+	char type = 'u';
+	if (val != NULL && val[0] != '\0')
+	{
+		// assume the value is a character and if it is changed later then it was not a 
+		// character
+		type = 'c';
+		bool isNumber = true;
+
+		// check if the first character is a '-' then skip the first element in the array
+		int i = 0; 
+		if (val[0] == '-')
+		{
+			i = 1;
+		}
+
+		// if any of the characters don't fall in the number range then it is not a number
+		for ( ; val[i]; i++)
+		{
+			// check if it is in the value number range
+			if ((val[i] < 48 || val[i] > 57) && val[i] != 46)
+			{
+				isNumber = false;
+				break;
+			}
+		}
+
+		// if it passed the isNumber passed enter this array
+		if (isNumber)
+		{
+			// if the first value is a negative sign we want to skip the first 
+			// item in the array
+			int i = 0;
+			if (val[0] == '-')
+			{
+				i = 1;
+			}	
+
+			// assume it is an int and if it finds a decimal . then it is a decimal number
+			type = 'i';
+			for ( ; val[i]; i++)
+			{
+				// check if the number has a decimal
+				if (val[i] == '.')
+				{
+					type = 'd';
+					break;
+				}
+			} // end for loop		
+		}  // end of its a number section
+	}  // check if the array had any values in it or was just a null character
+
+	return type;
+}
+
+
+/**************************************************************************
+ * void swapSort(T array[], int sizeArray)
+ * Description: This will use a swap sort to sort the given array that is 
+ * passed in
+ *
+ * INPUT:  array - this is the array of data
+ * 		  sizeArray - this is the size of the array that was passed in
+ * OUTPUT: array - the updated array is given back to the caller function
+ * RETURN: NONE
+ ****************************************************************************/
+template <typename T>
+void swapSort(T array[], int sizeArray)
+{
+  	int smallestValIndx = 0;
+  	T tempArrayVal;
+
+  	// this will loop through the array and will keep track of the items that
+  	// are currently sorted and the items that need to be sorted
+  	for (int i = 0; i < sizeArray; i++)
+  	{
+  		// this will ensure that the sorted items are separated from the non sorted items
+ 		smallestValIndx = i;
+
+ 		// loops through the remainder of the array to find the smallest value so it can be swapped
+    	for (int j = i; j < sizeArray; j++)
+    	{
+    		// If the current smallest index value is greater than another value in the array the
+    		// smallest index becomes the current index value of j
+    		if (array[smallestValIndx] > array[j])
+    		{
+
+    			smallestValIndx = j;
+    		}
+
+
+    	}
+
+    	// swap the array values using a temporary variable
+    	tempArrayVal = array[i];
+    	array[i] = array[smallestValIndx];
+    	array[smallestValIndx] = tempArrayVal;
+  	}
+}
+
+
+/******************************************************************
+ * void testCheckType()
+ * Description: This will run through several scenario's and will display
+ * the correct data type to ensure that it tests correctly
+*
+ * INPUT:  NONE
+ * OUTPUT: NONE
+ * RETURN: NONE
+ ********************************************************************/
+void testCheckType()
+{
+
+	//Test sToF or stringToFloat function
+	char array[8] = "55a33";
+	cout << "First Number: " << array << endl;
+	cout << "First Number type: " << checkType(array) << endl;
+
+	char array1[10] = "-3.0c";
+	cout << "Second Number: " << array1 << endl;
+	cout << "Second Number type: " << checkType(array1) << endl;
+	
+	string array2; 
+	array2 = "-12.452624234252";
+	cout << "Third Number: " << array2 << endl;
+	cout << "Third Number type: " << checkType(array2.c_str()) << endl;
+
+	array2 = "12.1";
+	cout << "4 Number: " << array2 << endl;
+	cout << "4 Number type: " << checkType(array2.c_str()) << endl;
+
+	array2 = "abcd";
+	cout << "5 Number: " << array2 << endl;
+	cout << "5 Number type: " << checkType(array2.c_str()) << endl;
+
+	array2 = "a";
+	cout << "6 Number: " << array2 << endl;
+	cout << "6 Number type: " << checkType(array2.c_str()) << endl;
+
+	array2 = "";
+	cout << "7 Number: " << array2 << endl;
+	cout << "7 Number type: " << checkType(array2.c_str()) << endl;
+
+	string array3;
+	cout << "8 Number: " << array3 << endl;
+	cout << "8 Number type: " << checkType(array3.c_str()) << endl;
+
+}
+
+
+/*********************************************************************
+ * void testsToF()
+ * Description: This will test if the function is converting a string to 
+ * a float correctly
+ *
+ * INPUT:  NONE
+ * OUTPUT: NONE
+ * RETURN: NONE
+ ***********************************************************************/
+void testsToF()
+{
+	//Test sToF or stringToFloat function
+	char array[8] = "55.33";
+	cout << "First Number: " << array << endl;
+	cout << "First Number type: " << sToF(array) << endl;
+
+	char array1[10] = "-3.0";
+	cout << "Second Number: " << array1 << endl;
+	cout << "Second Number type: " << sToF(array1) << endl;
+	
+	string array2; 
+	array2 = "-12.452624234252";
+	cout << "Third Number: " << array2 << endl;
+	cout << "Third Number type: " << sToF(array2.c_str()) << endl;
+
+	array2 = "12.1";
+	cout << "4 Number: " << array2 << endl;
+	cout << "4 Number type: " << sToF(array2.c_str()) << endl;
+
+	array2 = "3.33";
+	cout << "5 Number: " << array2 << endl;
+	cout << "5 Number type: " << sToF(array2.c_str()) << endl;
+
+	array2 = "0";
+	cout << "6 Number: " << array2 << endl;
+	cout << "6 Number type: " << sToF(array2.c_str()) << endl;
+
+	array2 = "6";
+	cout << "7 Number: " << array2 << endl;
+	cout << "7 Number type: " << sToF(array2.c_str()) << endl;
+
+	string array3;
+	cout << "8 Number: " << array3 << endl;
+	cout << "8 Number type: " << sToF(array3.c_str()) << endl;
+}
+
 
 #+end_src

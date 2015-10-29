@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>inquisitiveness</title>
+<!-- 2015-10-29 Thu 17:28 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">inquisitiveness</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Java Algorithm swap sort</a></li>
+<li><a href="#sec-2">2. C++ Algorithm swap sort</a></li>
+</ul>
+</div>
+</div>
+<p>
+This will be the first collaboration file for inquisitiveness
+</p>
+
+<p>
+Sorts we are using
+n<sup>2</sup> Insertion, Swap
+n log n Merge, Heap
+</p>
+
+<p>
+3 Languages
+Java, C++, elisp
+</p>
+
+
+<p>
+n<sup>2</sup> sorts in three different languages
+</p>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Java Algorithm swap sort</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-java">/**************************************************************
+ * Program: SortArray
+ * Author: Benjamin Furner
+ * Description: Will generate, sort and display a list for a user
+ **************************************************************/
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class SortArray {
+    private List&lt;Integer&gt; sortedArray;
+
+
+    /************
+    * This is the main function, it will be the test/driver program for this class
+    * args - these are the arguments that were input by the user on the command line
+    ******/
+    public static void main(String args[]) {
+
+       int arraySize = 15;
+
+       if (args != null) {
+	  arraySize = Integer.parseInt(args[0]);
+	  System.out.println(args[0]);
+       }
+
+       SortArray sa = new SortArray();
+       sa.driveSort(arraySize);
+
+    }
+
+    /******
+    * This will drive the main sorting program
+    * This will ensure that the values are displayed correctly
+    ******/
+    public void driveSort(int arraySize) {
+
+	// generate a list that will need to be sorted
+		System.out.println("Unsorted Array");
+		List&lt;Integer&gt; array = new ArrayList&lt;&gt;(); 
+
+		// generate the list of numbers with a psudo random order
+		for (int i = 1; i &lt;= arraySize; i++) {
+			// this will take the unsorted list and will improve it
+		    array.add(((i*52 + 2) % (arraySize * 2) % arraySize));
+		    System.out.print(((i*52 + 2) % (arraySize * 2) % arraySize) + " ");
+
+		}
+		System.out.println();
+
+
+	array = sort(array);
+
+	System.out.println("Second Array System");
+	// loop through the vales and display the resulting array
+	for (Integer i : array)
+	{
+		System.out.print(i + " ");
+	}
+
+	System.out.println();
+    }
+
+    /*************
+    * This will actually sort the list to what it should be
+    * array - this is the array value that needs to be sorted
+    * return: This will return the assorted array so that it can be verified that it was sorted correctly
+    **********/
+    public List&lt;Integer&gt; sort(List&lt;Integer&gt; array) {
+
+	// create the array that will be sorted
+	List&lt;Integer&gt; sortedList = new ArrayList&lt;&gt;();
+
+	// This will loop through the array and will search through and find the smallest value and will
+	// switch the smallest value with the first item.
+	int smallestItemIndex = 0;
+	int j = 0;
+	for (int i = 0; i &lt; array.size(); i++) {
+		// This will reset the variables while taking into account that i numbers of values is already
+		// sorted
+		j = i;
+		smallestItemIndex = i;
+
+		// This will run through the array values to find the smallest index
+		for ( ; j &lt; array.size(); j++) {
+
+			// check if the value that j is on is smaller than the current smallest value
+			if (array.get(smallestItemIndex) &gt; array.get(j)) {
+				smallestItemIndex = j;
+			}
+		}
+
+		// these will swap the i'th element with the smallest item in the remaider of the list
+		int temp = array.get(i);
+		array.set(i, array.get(smallestItemIndex));
+		array.set(smallestItemIndex, temp);
+
+	}
+
+	return array;
+    }
+
+
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> C++ Algorithm swap sort</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-c">/******************************************************************
+ * Swap Sort takes two parameters
+ * Description: Takes an array and sorts it based on the swap sort
+ * Author: Benjamin Furner
+ ******************************************************************/
+
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+
+//Prototypes
+template &lt;typename T&gt;
+void swapSort(T array[], int sizeArray);
+float sToF(const char * val);
+int   sToI(char * val);
+char checkType(const char * val);
+
+//Test functions
+void testCheckType();
+void testsToF();
+
+/*****************************************************************
+ * int main(int argc, char** argv)
+ * Description: Will drive the program that will run/test the sort
+ *
+ * INPUT:  argc - the number of arguments
+ *         argv - the actual aurguments as a string
+ * OUTPUT: NONE
+ * RETURN: returns a 0 to terminate the program
+ *****************************************************************/
+int main(int argc, char** argv)
+{
+	testsToF();
+	if (argc &gt; 1)
+	{
+		// three check values to see if an array is accurate all the way through
+		char firstElement = checkType(argv[1]);
+		char middleElement = checkType(argv[argc/2]);
+		char lastElement = checkType(argv[argc-1]);
+		cout &lt;&lt; "Test Values: " &lt;&lt; firstElement &lt;&lt; " " &lt;&lt; middleElement &lt;&lt; " " &lt;&lt; lastElement &lt;&lt; endl;
+		if (firstElement == 'c' &amp;&amp; middleElement == 'c' &amp;&amp; lastElement == 'c')
+		{
+			// create the string array based on the values input
+			string * arrayVals = new string[argc - 1];
+			for (int i = 0; i &lt; argc - 1; i++)
+			{
+				cout &lt;&lt; argv[i+1] &lt;&lt; endl;
+				arrayVals[i] = argv[i+1];
+			}
+			cout &lt;&lt; endl;
+
+			// call the swap sort and give it the array size
+			swapSort(arrayVals, argc - 1);
+
+
+			// this will display the array after it has been sorted by the array to show
+			// that it worked correctly
+			cout &lt;&lt; "Sorted Array: \n";
+			for (int i = 0; i &lt; argc - 1; i++)
+			{
+				cout &lt;&lt; arrayVals[i] &lt;&lt; endl;
+			} 
+			cout &lt;&lt; endl;
+		}
+		// check if the the elements in the array are integers, if they are then it is most likely that 
+		// all the elements are integers
+		else if (firstElement == 'i' &amp;&amp; middleElement == 'i' &amp;&amp; lastElement == 'i')
+		{
+			// create the array based on the values input
+			int * arrayVals = new int[argc - 1];
+			for (int i = 0; i &lt; argc - 1; i++)
+			{
+				cout &lt;&lt; argv[i+1] &lt;&lt; endl;
+				arrayVals[i] = sToI(argv[i+1]);
+			}
+			cout &lt;&lt; endl;
+
+			// call the swap sort and give it the array size
+			swapSort(arrayVals, argc - 1);  
+
+			// this will display the array after it has been sorted by the array to show
+			// that it worked correctly
+			cout &lt;&lt; "Sorted Array: \n";
+			for (int i = 0; i &lt; argc - 1; i++)
+			{
+				cout &lt;&lt; arrayVals[i] &lt;&lt; endl;
+			} 
+			cout &lt;&lt; endl;           
+		}
+		// check if the elements in the array are float values, the function will return an int if it does not have
+		// a decimal so we have to check if it is mixed
+		else if ((firstElement == 'i' || firstElement == 'd') 
+				&amp;&amp; (middleElement == 'i' || middleElement == 'd') 
+				&amp;&amp; (lastElement == 'i' || lastElement == 'd'))
+		{
+			// create the array based on the values input
+			float * arrayVals = new float[argc - 1];
+			for (int i = 0; i &lt; argc - 1; i++)
+			{
+				cout &lt;&lt; argv[i+1] &lt;&lt; endl;
+				arrayVals[i] = sToF(argv[i+1]);
+			}
+			cout &lt;&lt; endl;
+
+			// call the swap sort and give it the array size
+			swapSort(arrayVals, argc - 1);
+
+			// this will display the array after it has been sorted by the array to show
+			// that it worked correctly
+			cout &lt;&lt; "Sorted Array: \n";
+			for (int i = 0; i &lt; argc - 1; i++)
+			{
+				cout &lt;&lt; arrayVals[i] &lt;&lt; endl;
+			} 
+			cout &lt;&lt; endl;
+		}
+		else
+		{
+			cout &lt;&lt; "Invalid array input\n";
+			return 0;
+		}
+	}
+	else 
+	{
+		cout &lt;&lt; "Command Line Aurgument array expected, input the array on the command line\n";
+	}
+	return 0;
+}
+
+/*******************************************************************
+ * float sToF(char * val, int size)
+ * Description: This will take a character array and will convert it
+ * to a float value
+ *
+ * INPUT: val - this is the value to be converted
+ *        size - size of the character array
+ * OUTPUT: NONE
+ * RETURN: returns the converted float value
+ ********************************************************************/
+float sToF(const char * val)
+{
+	// these are the declared variables that will be needed in this function
+	float convertFloat = 0;
+	bool convertAfterDec = false;
+
+	int i = 0;
+	bool isNegative = false;
+	if (val[i] == '-')
+	{
+		i = 1;
+		isNegative = true;
+	}
+
+	// this will loop through all the float values &gt; 1 and will create the float number
+	for ( ; val[i] &amp;&amp; val[i] != '.'; i++)
+	{
+		// this will multiply the answer by 10 to make room for the next 10's number
+		convertFloat *= 10;
+		// adds the value in the array to the value of the float number
+		convertFloat += (val[i] - 48);
+	}
+
+
+	float convertFloatDec = 0;
+	// this will loop through all the decimal values and will convert them
+	float numDivide = 10;
+	if (val[i])
+	{
+		for ( ++i ; val[i]; i++)
+		{
+			// adds the decimal value to the number
+			convertFloatDec += val[i] - 48;
+			// shifts the decimal value over to the left by 10
+			convertFloatDec *= 10;
+			// keep track of how many values to the left it has been shifted to ensure that it
+			// is converted to decimal correctly at the end
+			numDivide *= 10;
+		}
+	}
+
+	// divide by number that was calculated based on how many places to the right it was shifted
+	convertFloatDec /= numDivide;
+
+	// adds the two results together and returns the float number
+	convertFloat += convertFloatDec;
+	if (isNegative)
+	{
+		convertFloat *= -1;
+	}
+	return (convertFloat);
+}
+
+/*******************************************************************************
+ * int sToI(char * val)
+ * Description: This function will take a character array and will convert it into
+ * an integer value
+ *
+ * INPUT:  val - the character array that is to be converted to an int
+ * OUTPUT: NONE
+ * RETURN: returns the integer that has been converted from the string
+ ********************************************************************************/
+int sToI(char * val)
+{
+	int convertedInt = 0;
+	bool isNegative = false;
+	int i = 0;
+	// loop through each value and convert it to the integer representation in base 10
+	// if it is negative it will skip the - sign and will factor it in later
+	if (val[i] == '-')
+	{
+		i = 1;
+		isNegative = true;
+	}
+
+	// loop through and convert the values in the char array to the int values
+	for ( ; val[i]; i++)
+	{
+		convertedInt *= 10;
+		convertedInt += val[i] - 48;
+	}
+
+	// check if it was a negative number, if it was convert it to negative
+	if (isNegative)
+	{
+		convertedInt *= -1;
+	}
+	return convertedInt;
+}
+
+/************************************************************************
+ * char checkType(char * val)
+ * Description: This will check the type and will return a character
+ * signifying the type that it discovered
+ *
+ * INPUT:  val - character array that is passed in with a value in it
+ * OUTPUT: NONE
+ * RETURN: returns a char based on the character type 
+ *                c - character array
+ *                d - float/decimal
+ *                i - int
+ *                u - unknown
+ *************************************************************************/
+char checkType(const char * val)
+{
+	// start with the assumption that this value is undefined or an empty array was passed in
+	char type = 'u';
+	if (val != NULL &amp;&amp; val[0] != '\0')
+	{
+		// assume the value is a character and if it is changed later then it was not a 
+		// character
+		type = 'c';
+		bool isNumber = true;
+
+		// check if the first character is a '-' then skip the first element in the array
+		int i = 0; 
+		if (val[0] == '-')
+		{
+			i = 1;
+		}
+
+		// if any of the characters don't fall in the number range then it is not a number
+		for ( ; val[i]; i++)
+		{
+			// check if it is in the value number range
+			if ((val[i] &lt; 48 || val[i] &gt; 57) &amp;&amp; val[i] != 46)
+			{
+				isNumber = false;
+				break;
+			}
+		}
+
+		// if it passed the isNumber passed enter this array
+		if (isNumber)
+		{
+			// if the first value is a negative sign we want to skip the first 
+			// item in the array
+			int i = 0;
+			if (val[0] == '-')
+			{
+				i = 1;
+			}       
+
+			// assume it is an int and if it finds a decimal . then it is a decimal number
+			type = 'i';
+			for ( ; val[i]; i++)
+			{
+				// check if the number has a decimal
+				if (val[i] == '.')
+				{
+					type = 'd';
+					break;
+				}
+			} // end for loop               
+		}  // end of its a number section
+	}  // check if the array had any values in it or was just a null character
+
+	return type;
+}
+
+
+/**************************************************************************
+ * void swapSort(T array[], int sizeArray)
+ * Description: This will use a swap sort to sort the given array that is 
+ * passed in
+ *
+ * INPUT:  array - this is the array of data
+ *                sizeArray - this is the size of the array that was passed in
+ * OUTPUT: array - the updated array is given back to the caller function
+ * RETURN: NONE
+ ****************************************************************************/
+template &lt;typename T&gt;
+void swapSort(T array[], int sizeArray)
+{
+	int smallestValIndx = 0;
+	T tempArrayVal;
+
+	// this will loop through the array and will keep track of the items that
+	// are currently sorted and the items that need to be sorted
+	for (int i = 0; i &lt; sizeArray; i++)
+	{
+		// this will ensure that the sorted items are separated from the non sorted items
+		smallestValIndx = i;
+
+		// loops through the remainder of the array to find the smallest value so it can be swapped
+	for (int j = i; j &lt; sizeArray; j++)
+	{
+		// If the current smallest index value is greater than another value in the array the
+		// smallest index becomes the current index value of j
+		if (array[smallestValIndx] &gt; array[j])
+		{
+
+			smallestValIndx = j;
+		}
+
+
+	}
+
+	// swap the array values using a temporary variable
+	tempArrayVal = array[i];
+	array[i] = array[smallestValIndx];
+	array[smallestValIndx] = tempArrayVal;
+	}
+}
+
+
+/******************************************************************
+ * void testCheckType()
+ * Description: This will run through several scenario's and will display
+ * the correct data type to ensure that it tests correctly
+*
+ * INPUT:  NONE
+ * OUTPUT: NONE
+ * RETURN: NONE
+ ********************************************************************/
+void testCheckType()
+{
+
+	//Test sToF or stringToFloat function
+	char array[8] = "55a33";
+	cout &lt;&lt; "First Number: " &lt;&lt; array &lt;&lt; endl;
+	cout &lt;&lt; "First Number type: " &lt;&lt; checkType(array) &lt;&lt; endl;
+
+	char array1[10] = "-3.0c";
+	cout &lt;&lt; "Second Number: " &lt;&lt; array1 &lt;&lt; endl;
+	cout &lt;&lt; "Second Number type: " &lt;&lt; checkType(array1) &lt;&lt; endl;
+
+	string array2; 
+	array2 = "-12.452624234252";
+	cout &lt;&lt; "Third Number: " &lt;&lt; array2 &lt;&lt; endl;
+	cout &lt;&lt; "Third Number type: " &lt;&lt; checkType(array2.c_str()) &lt;&lt; endl;
+
+	array2 = "12.1";
+	cout &lt;&lt; "4 Number: " &lt;&lt; array2 &lt;&lt; endl;
+	cout &lt;&lt; "4 Number type: " &lt;&lt; checkType(array2.c_str()) &lt;&lt; endl;
+
+	array2 = "abcd";
+	cout &lt;&lt; "5 Number: " &lt;&lt; array2 &lt;&lt; endl;
+	cout &lt;&lt; "5 Number type: " &lt;&lt; checkType(array2.c_str()) &lt;&lt; endl;
+
+	array2 = "a";
+	cout &lt;&lt; "6 Number: " &lt;&lt; array2 &lt;&lt; endl;
+	cout &lt;&lt; "6 Number type: " &lt;&lt; checkType(array2.c_str()) &lt;&lt; endl;
+
+	array2 = "";
+	cout &lt;&lt; "7 Number: " &lt;&lt; array2 &lt;&lt; endl;
+	cout &lt;&lt; "7 Number type: " &lt;&lt; checkType(array2.c_str()) &lt;&lt; endl;
+
+	string array3;
+	cout &lt;&lt; "8 Number: " &lt;&lt; array3 &lt;&lt; endl;
+	cout &lt;&lt; "8 Number type: " &lt;&lt; checkType(array3.c_str()) &lt;&lt; endl;
+
+}
+
+
+/*********************************************************************
+ * void testsToF()
+ * Description: This will test if the function is converting a string to 
+ * a float correctly
+ *
+ * INPUT:  NONE
+ * OUTPUT: NONE
+ * RETURN: NONE
+ ***********************************************************************/
+void testsToF()
+{
+	//Test sToF or stringToFloat function
+	char array[8] = "55.33";
+	cout &lt;&lt; "First Number: " &lt;&lt; array &lt;&lt; endl;
+	cout &lt;&lt; "First Number type: " &lt;&lt; sToF(array) &lt;&lt; endl;
+
+	char array1[10] = "-3.0";
+	cout &lt;&lt; "Second Number: " &lt;&lt; array1 &lt;&lt; endl;
+	cout &lt;&lt; "Second Number type: " &lt;&lt; sToF(array1) &lt;&lt; endl;
+
+	string array2; 
+	array2 = "-12.452624234252";
+	cout &lt;&lt; "Third Number: " &lt;&lt; array2 &lt;&lt; endl;
+	cout &lt;&lt; "Third Number type: " &lt;&lt; sToF(array2.c_str()) &lt;&lt; endl;
+
+	array2 = "12.1";
+	cout &lt;&lt; "4 Number: " &lt;&lt; array2 &lt;&lt; endl;
+	cout &lt;&lt; "4 Number type: " &lt;&lt; sToF(array2.c_str()) &lt;&lt; endl;
+
+	array2 = "3.33";
+	cout &lt;&lt; "5 Number: " &lt;&lt; array2 &lt;&lt; endl;
+	cout &lt;&lt; "5 Number type: " &lt;&lt; sToF(array2.c_str()) &lt;&lt; endl;
+
+	array2 = "0";
+	cout &lt;&lt; "6 Number: " &lt;&lt; array2 &lt;&lt; endl;
+	cout &lt;&lt; "6 Number type: " &lt;&lt; sToF(array2.c_str()) &lt;&lt; endl;
+
+	array2 = "6";
+	cout &lt;&lt; "7 Number: " &lt;&lt; array2 &lt;&lt; endl;
+	cout &lt;&lt; "7 Number type: " &lt;&lt; sToF(array2.c_str()) &lt;&lt; endl;
+
+	string array3;
+	cout &lt;&lt; "8 Number: " &lt;&lt; array3 &lt;&lt; endl;
+	cout &lt;&lt; "8 Number type: " &lt;&lt; sToF(array3.c_str()) &lt;&lt; endl;
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2015-10-29 Thu 17:28</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
