@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>inquisitiveness</title>
-<!-- 2015-10-30 Fri 00:06 -->
+<!-- 2015-10-30 Fri 00:02 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <style type="text/css">
@@ -749,40 +749,40 @@ void testsToF()
 template &lt;typename T&gt;
 void insertSort(T array[], int sizeArray)
 {
-   int smallestValIndx = 0;
+	int smallestValIndx = 0;
 
-   T tempVal;
-   bool isInserted = false;
-   // loop through the array and insert the values into their correct position
-   // while also shifting the values up if they do not match
-   for (int i = 0; i &lt; sizeArray; i++)
-   {
-      // copy the value to be moved into this value
-      tempVal = array[i];
-      isInserted = false;
-      for (int j = i - 1; j &gt;= 0; j--)
-      {
+	T tempVal;
+	bool isInserted = false;
+	// loop through the array and insert the values into their correct position
+	// while also shifting the values up if they do not match
+	for (int i = 0; i &lt; sizeArray; i++)
+	{
+		// copy the value to be moved into this value
+		tempVal = array[i];
+		isInserted = false;
+		for (int j = i - 1; j &gt;= 0; j--)
+		{
 
-	 // check if the array value at j is less than the value we are trying to insert
-	 // this will ensure we are inserting only if the value immediately preceeding it
-	 // is smaller
-	 if (array[j] &lt; tempVal)
-	 {
-	    array[j+1] = tempVal;
-	    isInserted = true;
-	    break;
-	 }
-	 // swap the values that are currently in the array to make room for the inserted element
-	 array[j+1] = array[j];
-      }
+			// check if the array value at j is less than the value we are trying to insert
+			// this will ensure we are inserting only if the value immediately preceeding it
+			// is smaller
+			if (array[j] &lt; tempVal)
+			{
+				array[j+1] = tempVal;
+				isInserted = true;
+				break;
+			}
+			// swap the values that are currently in the array to make room for the inserted element
+			array[j+1] = array[j];
+		}
 
-      // check if the value was inserted previously if not it will assign the value to the first place
-      // in the array because it means that the value belongs in index 0
-      if (!isInserted)
-      {
-	 array[0] = tempVal;  
-      }
-   }
+		// check if the value was inserted previously if not it will assign the value to the first place
+		// in the array because it means that the value belongs in index 0
+		if (!isInserted)
+		{
+			array[0] = tempVal;  
+		}
+	}
 }
 </pre>
 </div>
@@ -790,7 +790,7 @@ void insertSort(T array[], int sizeArray)
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2015-10-30 Fri 00:06</p>
+<p class="date">Created: 2015-10-30 Fri 00:02</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

@@ -567,3 +567,112 @@ void testsToF()
 
 
 #+end_src
+* Java Algorithm insert sort
+
+#+BEGIN_SRC java
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+class InsertSortJava
+{
+
+    public static void main(String args[]) {
+	InsertSortJava isj = new InsertSortJava();
+
+	ArrayList<Integer> ar = new ArrayList<>();
+	File inFile = null;
+	if (0 < args.length) {
+	    inFile = new File(args[0]);
+	} else {
+	    System.err.println("Invalid arguments count:" + args.length);
+	    return;
+	}
+	try {
+	    Scanner scanner = new Scanner(inFile);
+	    while(scanner.hasNextInt())
+		ar.add(scanner.nextInt());
+	}
+	catch (FileNotFoundException ex){
+	    System.out.println(ex);
+	}
+
+	
+	Integer[] arr = ar.toArray(new Integer[ar.size()]);
+	System.out.println(java.util.Arrays.toString(arr));
+	isj.insertSort(arr);
+	System.out.println(java.util.Arrays.toString(arr));
+
+    }
+
+    
+    // retrieved from rosetta code.com
+    public void insertSort(Integer array[]){
+	for(int i = 1; i < array.length; i++){
+	    int value = array[i];
+	    int j = i - 1;
+	    while(j >= 0 && array[j] > value){
+		array[j + 1] = array[j];
+		j = j - 1;
+	    }
+	    array[j + 1] = value;
+	}
+    }
+
+}
+#+END_SRC
+* C++ Algorithm insert sort
+#+begin_src c
+
+/**************************************************************************
+ * void swapSort(T array[], int sizeArray)
+ * Description: This will use a swap sort to sort the given array that is 
+ * passed in
+ *
+ * INPUT:  array - this is the array of data
+ * 		  sizeArray - this is the size of the array that was passed in
+ * OUTPUT: array - the updated array is given back to the caller function
+ * RETURN: NONE
+ ****************************************************************************/
+template <typename T>
+void insertSort(T array[], int sizeArray)
+{
+   int smallestValIndx = 0;
+
+   T tempVal;
+   bool isInserted = false;
+   // loop through the array and insert the values into their correct position
+   // while also shifting the values up if they do not match
+   for (int i = 0; i < sizeArray; i++)
+   {
+      // copy the value to be moved into this value
+      tempVal = array[i];
+      isInserted = false;
+      for (int j = i - 1; j >= 0; j--)
+      {
+
+         // check if the array value at j is less than the value we are trying to insert
+         // this will ensure we are inserting only if the value immediately preceeding it
+         // is smaller
+         if (array[j] < tempVal)
+         {
+            array[j+1] = tempVal;
+            isInserted = true;
+            break;
+         }
+         // swap the values that are currently in the array to make room for the inserted element
+         array[j+1] = array[j];
+      }
+
+      // check if the value was inserted previously if not it will assign the value to the first place
+      // in the array because it means that the value belongs in index 0
+      if (!isInserted)
+      {
+         array[0] = tempVal;  
+      }
+   }
+}
+
+
+#+end_src
