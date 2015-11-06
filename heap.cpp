@@ -25,7 +25,7 @@ int main(int argc, char ** argv) {
       cout << "Unable to open file " << inFileName << endl;
       return -1;
     }
-  
+
   /* Sort integer */
   vector<int> vData;
   int temp = 0;
