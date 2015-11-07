@@ -80,9 +80,7 @@ public class heapSort {
 
 	
 	Integer[] arr = ar.toArray(new Integer[ar.size()]);
-	System.out.println(java.util.Arrays.toString(arr));
 	heapSort(arr);
-	System.out.println(java.util.Arrays.toString(arr));
     
     }
 }

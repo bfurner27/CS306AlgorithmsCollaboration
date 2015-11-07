@@ -28,5 +28,4 @@ def siftdown(lst, start, end):
 with open('num.txt') as f:
     for value in enumerate(f.read().split()):
         numbers.append(int(value[1]))
-print items
-print heapsort(items)
+heapsort(items)

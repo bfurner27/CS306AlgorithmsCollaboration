@@ -63,9 +63,7 @@ public class Heap {
 
 	
 	Integer[] arr = ar.toArray(new Integer[ar.size()]);
-	System.out.println(java.util.Arrays.toString(arr));
-	heapsort(arr);
-	System.out.println(java.util.Arrays.toString(arr));
+	sort(arr);
     
     }
 }
