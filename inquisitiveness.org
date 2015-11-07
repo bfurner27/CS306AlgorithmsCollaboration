@@ -679,7 +679,15 @@ class InsertSortJava
 }
 #+END_SRC
 * C++ Algorithm insert sort
+     Fixed Compliation problems sorry about not getting that working before
 #+begin_src c
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+
+template <typename T>
+void insertSort(T array[], int sizeArray);
 
 /**************************************************************************
  * 
@@ -690,27 +698,27 @@ int main(int argc, char ** argv)
 {
    if (argc > 1)
    {
-   inFileName = argv[1];
-   int array[256]; 
-   ifstream fin(inFileName);
-   
-   int i = 0; 
-   while (fin >> array[i])
-   {
-      cout << array[i] << " ";
-      i++;
-   }
-   cout << endl;
+     char * inFileName = argv[1];
+     int array[256]; 
+     ifstream fin(inFileName);
+     
+     int i = 0; 
+     while (fin >> array[i])
+     {
+        cout << array[i] << " ";
+        i++;
+     }
+     cout << endl;
 
-   insertSort(array, i);
-	  
-   for (int j = 0; j < i; j++)
-   {
-      cout << array[j] << " ";
-   }
-   cout << endl;
+     insertSort(array, i);
+  	  
+     for (int j = 0; j < i; j++)
+     {
+        cout << array[j] << " ";
+     }
+     cout << endl;
 
-   fin.close();
+     fin.close();
    }
 }
 
@@ -762,9 +770,6 @@ void insertSort(T array[], int sizeArray)
 	}
     }
 }
-
-
-
 #+end_src
 * ELisp Algorithm insert sort
 #+BEGIN_SRC elisp 
