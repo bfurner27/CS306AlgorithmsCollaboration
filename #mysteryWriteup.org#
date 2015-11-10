@@ -234,7 +234,8 @@
 ** The Solution
 *** solution 1
     #+begin_src Psudocode
-
+for i <- 0 to n
+   
     #+end_src
 *** solution 2
  #+begin_src Psudocode
