@@ -63,8 +63,11 @@ public class Heap {
 
 	
 	Integer[] arr = ar.toArray(new Integer[ar.size()]);
+	long startTime = System.currentTimeMillis();
 	sort(arr);
-    
+	long endTime   = System.currentTimeMillis();
+	long totalTime = endTime - startTime;
+	System.out.println((float)totalTime/1000);
     }
 }
     
