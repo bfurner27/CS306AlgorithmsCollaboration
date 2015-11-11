@@ -1,7 +1,8 @@
-#include<iostream>
-#include<algorithm>
-#include<vector>
-#include<fstream>
+#include<iostream> // cout
+#include<algorithm> // make_heap, sort_heap
+#include<vector> // vector (do not know how many numbers will be sent in)
+#include<fstream> // file instream
+#include<ctime> // clock_t
 using namespace std;
 
 const int MAX = 256;
@@ -35,10 +36,14 @@ int main(int argc, char ** argv) {
   cout << "\nBefore sort:" << endl;
   for(int i = 0; i < vData.size(); i++)
     cout << vData[i] << endl;
+  clock_t time = clock();
   make_heap(&vData[0],&vData[0] + vData.size());
   sort_heap(&vData[0],&vData[0] + vData.size());
+  time = clock() - time;
   cout << "\nAfter sort:" << endl;
   for(int i = 0; i < vData.size(); i++)
     cout << vData[i] << endl;
+  cout << "It took me " << time << " clicks." << endl;
+  cout << ((float)time)/CLOCKS_PER_SEC << " seconds." << endl;
   return 0;
 }
