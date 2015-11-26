@@ -1,0 +1,117 @@
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+; big numbers library
+(require 'calc.el)
+
+				    
+;retrieved from: http://math.stackexchange.com/questions/1073118/find-the-leftmost-most-significant-digits-of-a-large-exponent-calculation-say
+
+
+;; function we are using:
+;floor(10^(exp*log(2;10)-floor(exp*log(2;10))) * 10^(numDigits-1))
+
+(defun powerOf2_27Digits exp numDigits)
+   (floor 13.5)
+)
+
+
+(powerOf2_27Digits 5 5)
+
+(defun pow2digits (exp numDigits)
+  (let ((n (string-to-number(calc-eval (* exp (log10 2)))))) 
+       (ffloor
+	(calc-eval (*
+	 (expt 10 (- n (ffloor n)))
+	 (expt 10 (- numDigits 1)))))))
+
+pow2digits
+
+(pow2digits 79566123 9)
+
+(calc-eval "$" nil (calc-eval "$*log10(2)" nil 100000000))
+
+
+(calc-precision 100)
+
+
+(calc-eval "10^($*log10(2) - floor($*log10(2))) * 10 ^ ($$ - 1)" nil 1000 100)
+
+"1071508607186267320948425049060001810561404811705533607443750388370351051124936122493198378815695758.0"
+
+"107150860718626732094842504906000181056140367.0"
+
+"126765060022822940149670320537599999999999987.0"
+
+
+"126765060022822940149670320.5"
+"126765060022822940149670329.0"
+
+
+
+
+
+"1.26765060023e26"
+(calc-precision 27)
+
+
+
+
+
+
+
+
+
+
+
+
+
+(let ((n (floor (* 46 (log10 2)))))
+  (message "One kind of animal has %s." n))
+"One kind of animal has 13."
+
+
+
+
+(let ((zebra 50)
+      (tiger 32))
+  (message "One kind of animal has %s and another is %s."
+	   zebra tiger))
+"One kind of animal has 50 and another is 32."
+
+"One kind of animal has 50 and another is 32."
+
+"One kind of animal has stripes and another is fierce."
+
+
+
+
+
+(log10 50)
+
+(expt 10 2)
+
+(ffloor 3.43981720398741098273409871234109827340981723409871230948712098734)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
