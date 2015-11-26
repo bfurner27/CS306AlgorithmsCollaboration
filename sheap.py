@@ -1,3 +1,6 @@
+import sys
+import time
+
 items = []
 
 def heapsort(lst):
@@ -25,7 +28,10 @@ def siftdown(lst, start, end):
     else:
       break
 
-with open('num.txt') as f:
+with open(sys.argv[1], 'r') as f:
     for value in enumerate(f.read().split()):
-        numbers.append(value[1])
+        items.append(value[1])
+t0 = time.clock()
 heapsort(items)
+print time.clock() - t0, "seconds process time"
+#print items
