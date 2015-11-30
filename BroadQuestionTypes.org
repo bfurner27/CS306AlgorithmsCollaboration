@@ -1,0 +1,43 @@
+
+* Broad Question Types
+
+** 1
+- What is the *FULL* definition of /algorithm?/
+** 2
+- How is an algorithm's time efficiency principally measured?
+** 3
+- How does one define and recognize the /basic operation/ of an algorithm.
+** 4
+- What is the established framework for analyzing an algorithm's time efficiency primarily grounded in?
+** 5
+- How does one analyze a given algorithm, and find its Big-Oh, Big-Omega and Big-Theta classes?
+** 6
+- What are the differences between the basic efficiency classes?
+** 7
+- What techniques can be used to advantage when comparing orders of growth of functions?
+** 8
+- What does /running time as a function of n/ mean?
+** 9
+- How does one recognize the running times of various algorithms, described in different ways?
+** 10
+- What are the basic properties of logarithms?
+** 11
+- What are the basics of graph searching algorithms?
+** 12
+- What specific algorithms are in which broad categories?
+** 13
+- What are the basics of optimal binary search trees?
+** 14
+- What are the basics of hashing?
+** 15
+- What are the broad types of space-time tradeoffs?
+** 16
+- How are information-theoretic arguments based on the amount of information an algorithm must produce?
+** 17
+- What is the central idea behind decision-tree theory?
+** 18
+- What are the broad ideas of complexity theory?
+** 19
+- What are the basic similarities and differences between the complexity classes P, NP and NP-Complete?
+** 20
+- What are the broad ideas of numerical analysis?
