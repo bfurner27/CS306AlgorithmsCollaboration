@@ -1,0 +1,351 @@
+
+#+TITLE: Vastness
+#+AUTHOR: Rick Neff
+#+EMAIL:  NeffR@byui.edu
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:nil toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+
+* EN11
+
+You are invited to apply what you've learned to synthesize and analyze
+an algorithm for solving a deceptively simple problem, vast in its
+extent. This invitation to exploration is codenamed /Vastness/.
+
+** Requirements
+
+Write elisp code for solving the following problem:
+
+Given a positive integer =n=, is there a power of 2 that has a
+specified =n=-digit number as a prefix?
+
+While simple to state, there are numerous questions this problem
+raises, not the least of which is, is it tractable?  With certain
+1-digit numbers (1 through 6, and 8) the answer is trivially yes, by
+mere inspection of a few small powers of 2:
+
+| Prefix | n | 2^n |
+|--------+---+-----|
+| 1      | 0 | 1   |
+| 2      | 1 | 2   |
+| 3      | 5 | 32  |
+| 4      | 2 | 4   |
+| 5      | 9 | 512 |
+| 6      | 6 | 64  |
+| 8      | 3 | 8   |
+
+A program is certainly not needed to find those! And for the
+single digits 7 and 9, a determined search will eventually find
+$70368744177664 = 2^{46}$ and $9007199254740992 = 2^{53}$, which are
+the smallest numbers that fit the bill. But what about 2-digit
+numbers? 3-digit numbers? 4-digit numbers? 27-digit numbers?!
+
+One of the goals of this class was for you to become conversant with
+the topics and issues surrounding algorithms and complexity. Recall
+that these included:
+
+     - Basic algorithms analysis: Asymptotic analysis of upper and average complexity bounds.
+     - Best, average, and worst case behaviors.
+     - Big-Oh, little-Oh, Big-Omega, and Big-Theta notation.
+     - Standard complexity classes.
+     - Empirical measurements of performance.
+     - Time and space tradeoffs in algorithms.
+
+Together with the new patterns of thinking and mind tools you have
+acquired throughout the semester, you should call upon for this
+"capstone" exploration all of your prior intuition and creativity and
+/curiosity/ --- so treat this as a superlative gersy principle
+application opportunity!
+
+The following is a partial list of questions you should address ---
+thinking of others is part of the creative challenge:
+
+      1. What data structures are appropriate?
+
+	 We used the data structures in calc eval
+
+	 to hold the numbers so we did not have to worry about doing our own
+
+	 big int.
+
+      2. What algorithm design technique(s) is/are best.
+	 
+	 The best algorithm technique that we found was to reduce the exponential
+
+	 calcluations into logarithmic calculations. We reduced the length of 
+
+	 the calculations to ensure that the program could run much more efficiently.
+
+      3. What form should your program's input and output take?
+
+	 INPUT: A string of the prefix numbers that we were looking for in a power of 2
+	 OUTPUT: the exponent of the power of 2 that gives us the matching prefix numbers.
+ 
+      4. What is/are the efficiency/complexity class(es) of your algorithm(s)?
+	 
+	 Based on what we calculated from the function we produced the funtion was 
+
+	 linear. But there could be complexity items in calc-eval that turned it
+
+	 into an exponential function. 
+	 
+	 
+         Lower bound is constant based on just putting in a 1 or any other power
+
+	 of two.
+
+	 We do not really know what the average bound is but, if we could guess
+
+	 it will be close to the upper bound.
+
+      5. What is the actual running time for some test runs?
+
+	 
+
+      6. Is this decision problem NP-Complete?
+
+	 
+
+      7. What problem sizes are feasible?
+
+	 7 digit numbers are probably the highest feasible size because it can
+
+	 be done in the most reasonable time of about 20 minutes.
+
+      8. Is there hope of ever finding your "personal" power of 2, if
+         it even exists? For example, the smallest power of 2 prefixed by
+         your 9-digit ID number or 10-digit phone number? What about a
+         27-digit number consisting of the 9 digits of your Social Security
+         number, followed by the 8 digits of your birth date (2 for month, 2
+         for day, 4 for year), followed by the 10 digits of your cell phone
+         number?
+
+	 There is hope, because it is an infinite number so somewhere out in 
+
+	 existence. The algorithm we wrote would not be able to find it in a 
+
+	 reasonable amount of time but, potentially some other algorithm or a 
+
+	 faster computer or both could find the number in a reasonable amount of
+
+	 time. Because it is a decision problem the answer is yes.
+
+** Expectations
+
+   In addition to writing elisp code, you are expected to write a
+   report having a good introduction (stating the goal of this
+   activity) and conclusion (summarizing your results), and using
+   correct grammar and spelling throughout.
+
+   You are also expected to use *org mode* to write your report.
+
+** Grading Criteria
+
+   Grading for this exploration is based on application and engagement
+   (whether or not or to what extent you figured out the hows and the
+   whys), correctness and completeness, and creativity and
+   efficiency. Details, as usual, are in the self-assessment.
+
+** Vastness Sample Code
+
+  Use the following code block as a guide and a branching point for
+  your exploration, if you so desire:
+
+#+BEGIN_SRC emacs-lisp :tangle yes                                                                                                                                     
+(require 'bigint) ; find at http://firstthreeodds.org/cs237/bigint.el
+(require 'calc)   ; for logarithms and other high precision calculations
+(require 'cl)
+
+;; Self-documenting code (except for three functions :-)
+;; In other words, the lack of documentation is a deliberate omission
+;; to force you to read the code!
+
+(defun fractional-part-of-log-10-of (prefix)
+  (let ((log-10-of-prefix (log prefix 10)))
+    (- log-10-of-prefix (floor log-10-of-prefix))))
+
+(defconst *log-10-of-2* (log 2 10))
+
+(defun fractional-part-of-n-times-log-10-of-2 (n)
+  (let ((n-times-log-10-of-2 (* n *log-10-of-2*)))
+    (- n-times-log-10-of-2 (floor n-times-log-10-of-2))))
+
+(defun seek (prefix &optional max-iterations)
+  (let ((n 1)
+	(lower (fractional-part-of-log-10-of prefix))
+	(upper (fractional-part-of-log-10-of (1+ prefix)))
+	(sought 0)
+	(found nil))
+    (setq max-iterations (if (integerp max-iterations) max-iterations most-positive-fixnum))
+    (while (and (not found) (< n max-iterations))
+      (setq sought (fractional-part-of-n-times-log-10-of-2 n))
+;      (princ (format "lower sought upper: %f %f %f\n" lower sought upper))
+      (if (and (< lower sought) (< sought upper))
+	  (setq found n)
+	(setq n (1+ n))))
+    found))
+
+(defun verify (found prefix)
+  (let* ((calc-display-working-message nil)
+	 (power-of-2 (calc-eval (format "2^%d" found))))
+    (if	(string= prefix (substring power-of-2 0 (min (length power-of-2) (length prefix))))
+	(princ (format "Verified that prefix %s was found by using calc-eval to calculate 2^%d = %s...\n"
+		       prefix found (substring power-of-2 0 (min (length power-of-2) 40))))
+      (princ (format "Not verified. Try using bc to compute 2^%d\n" found)))))
+
+(defun run (&optional args-string)
+  (let* ((args (or args-string (getenv "ARGS")))
+	 (arg-list (split-string args " " t))
+	 (prefix (nth 0 arg-list))
+	 (max-iterations (if (= 2 (length arg-list)) (string-to-number (nth 1 arg-list)) 1000))
+	 (found (seek (string-to-number prefix) max-iterations)))
+    (if found
+	(verify found prefix)
+      (princ (format "The prefix %s was not found in %d iterations.\n" prefix max-iterations)))
+    t))
+
+(defun calc-log (x)
+  "Calculate the natural logarithm of x using a truncated Taylor series expansion.
+   This converges (slowly) only for x in the range -1 < x < 1."
+  (let ((X (1- x)))
+    (+ X (/ (* X X) -2.0) (/ (* X X X) 3.0) (/ (* X X X X) -4.0) (/ (* X X X X X) 5.0)
+       (/ (* X X X X X X) -6.0) (/ (* X X X X X X X) 7.0)
+       (/ (* X X X X X X X X) -8.0) (/ (* X X X X X X X X X) 9.0))))
+
+(defun calc-log-approx (x)
+  "This is actually better than calc-log!"
+  (let ((answer x))
+    (dotimes (i 10)
+      (setq answer (sqrt answer)))
+    (* 1024 (1- answer))))
+
+(defvar *one* (bigint-int-to-bigint 1))
+
+(defvar *two* (bigint-int-to-bigint 2))
+
+(defun power-of-2 (n)
+  (if (zerop n) *one*
+    (let* ((x *one*)
+	   (power *two*))
+      (while (> n 1)
+	(cond ((= 1 (% n 2))
+	       (setq x (bigint-multiply x power))
+	       (setq n (/ (1- n) 2)))
+	      (t
+	       (setq n (/ n 2))))
+	(setq power (bigint-multiply power power)))
+      (bigint-multiply x power))))
+
+(defun power-of-2-string (n-as-string)
+  "The string-based version of power-of-2, for convenience.
+   Note n-as-string is NOT a bigint-sized number.
+   Raising 2 to more than (or even well less than) the
+   most-positive-fixnum'th power is NOT recommended."
+  (bigint-to-string (power-of-2 (string-to-number n-as-string))))
+
+(defun make-prefix-table (&optional max)
+  (let ((max-prefix-size (if max max 10)))
+    (make-hash-table :size (* max-prefix-size 1000))))
+
+(defvar *prefix-table* (make-prefix-table))
+
+(defun record-prefix (prefix power-of-2)
+  (or (gethash prefix *prefix-table*)
+      (puthash prefix power-of-2 *prefix-table*)))
+
+(defun get-prefix-power (prefix)
+  (gethash prefix *prefix-table*))
+
+(defun record-each-prefix-in (bigint-as-string n)
+  (let ((len (min 10 (length bigint-as-string))))
+    (loop for i from 1 to len
+	  do (record-prefix (substring bigint-as-string 0 i) n))))
+
+(defun record-prefixes (upper-limit)
+  (loop for n from 0 to upper-limit
+	do (record-each-prefix-in (bigint-to-string (power-of-2 n)) n)))
+
+(defun display-all ()
+  (maphash (lambda (key val) (princ (format "%s --> 2^%d\n" key val))) *prefix-table*))
+#+END_SRC
+
+** What is True?
+
+#+BEGIN_SRC emacs-lisp
+(defun what-is-true-about-my-engagement-with-vastness ()
+  "If need be, replace a 100 with a smaller number to reflect how much you feel you deserve."
+  (vector
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true of my experience in general?                              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["I learned something new." 2]
+["I achieved something meaningful, or something I can build upon at a later time." 2]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true of my report on what I learned?                            ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["It shows some evidence of a curious mind at work." 3]
+["It shows ample evidence of a curious mind at work." 4]
+["It shows vast evidence of a curious mind at work." 5]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true about how I justified my answers to the previous question? ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["I treated this exploration as a superlative gersy principle application opportunity." 2]
+["I enhanced my way of thinking about hard problems." 2]
+["I somewhat addressed the first of the partial list of eight questions." 2]
+["I thoroughly addressed the first of the partial list of eight questions." 2]
+["I *clearly* addressed the first of the partial list of eight questions." 2]
+["I somewhat addressed the second of the partial list of eight questions." 2]
+["I thoroughly addressed the second of the partial list of eight questions. " 2]
+["I *clearly* addressed the second of the partial list of eight questions." 2]
+["I somewhat addressed the third of the partial list of eight questions.  " 2]
+["I thoroughly addressed the third of the partial list of eight questions." 2]
+["I *clearly* addressed the third of the partial list of eight questions." 2]
+["I somewhat addressed the fourth of the partial list of eight questions.  " 2]
+["I thoroughly addressed the fourth of the partial list of eight questions." 2]
+["I *clearly* addressed the fourth of the partial list of eight questions." 2]
+["I somewhat addressed the fifth of the partial list of eight questions.  " 2]
+["I thoroughly addressed the fifth of the partial list of eight questions." 2]
+["I *clearly* addressed the fifth of the partial list of eight questions." 2]
+["I somewhat addressed the sixth of the partial list of eight questions.  " 2]
+["I thoroughly addressed the sixth of the partial list of eight questions." 2]
+["I *clearly* addressed the sixth of the partial list of eight questions." 2]
+["I somewhat addressed the seventh of the partial list of eight questions.  " 2]
+["I thoroughly addressed the seventh of the partial list of eight questions." 2]
+["I *clearly* addressed the seventh of the partial list of eight questions." 2]
+["I somewhat addressed the eighth of the partial list of eight questions.  " 2]
+["I thoroughly addressed the eighth of the partial list of eight questions." 2]
+["I *clearly* addressed the eighth of the partial list of eight questions." 2]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true of how I met the creative challenge of coming up           ;;
+;; with more questions?                                                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["I thought of and *clearly* addressed at least two additional questions." 4]
+["I thought of and *clearly* addressed at least four additional questions." 5]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true of the mechanical "infelicities" (misspelled words,        ;;
+;; grammatical errors, punctuation errors) in my report on what I learned? ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["There are fewer than four." 2]
+["There are fewer than three." 2]
+["There are fewer than two." 2]
+["There are none." 2]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true about the efficiency of my code?                           ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["It solves the decision problem in O(infinity) time." 1]
+["It solves the decision problem in O(superexponential) time." 2]
+["It solves the decision problem in O(exponential) time." 3]
+["It solves the decision problem in O(polynomial) time." 4]
+["It solves the decision problem in constant time." 5]
+))
+#+END_SRC
