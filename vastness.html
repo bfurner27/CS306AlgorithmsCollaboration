@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Vastness</title>
+<!-- 2015-12-11 Fri 21:18 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Rick Neff" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Vastness</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">EN11</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+You are invited to apply what you've learned to synthesize and analyze
+an algorithm for solving a deceptively simple problem, vast in its
+extent. This invitation to exploration is codenamed <i>Vastness</i>.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Requirements</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Write elisp code for solving the following problem:
+</p>
+
+<p>
+Given a positive integer <code>n</code>, is there a power of 2 that has a
+specified <code>n</code>-digit number as a prefix?
+</p>
+
+<p>
+While simple to state, there are numerous questions this problem
+raises, not the least of which is, is it tractable?  With certain
+1-digit numbers (1 through 6, and 8) the answer is trivially yes, by
+mere inspection of a few small powers of 2:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">Prefix</th>
+<th scope="col" class="right">n</th>
+<th scope="col" class="right">2<sup>n</sup></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+</tr>
+
+<tr>
+<td class="right">2</td>
+<td class="right">1</td>
+<td class="right">2</td>
+</tr>
+
+<tr>
+<td class="right">3</td>
+<td class="right">5</td>
+<td class="right">32</td>
+</tr>
+
+<tr>
+<td class="right">4</td>
+<td class="right">2</td>
+<td class="right">4</td>
+</tr>
+
+<tr>
+<td class="right">5</td>
+<td class="right">9</td>
+<td class="right">512</td>
+</tr>
+
+<tr>
+<td class="right">6</td>
+<td class="right">6</td>
+<td class="right">64</td>
+</tr>
+
+<tr>
+<td class="right">8</td>
+<td class="right">3</td>
+<td class="right">8</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+A program is certainly not needed to find those! And for the
+single digits 7 and 9, a determined search will eventually find
+\(70368744177664 = 2^{46}\) and \(9007199254740992 = 2^{53}\), which are
+the smallest numbers that fit the bill. But what about 2-digit
+numbers? 3-digit numbers? 4-digit numbers? 27-digit numbers?!
+</p>
+
+<p>
+One of the goals of this class was for you to become conversant with
+the topics and issues surrounding algorithms and complexity. Recall
+that these included:
+</p>
+
+<ul class="org-ul">
+<li>Basic algorithms analysis: Asymptotic analysis of upper and average complexity bounds.
+</li>
+<li>Best, average, and worst case behaviors.
+</li>
+<li>Big-Oh, little-Oh, Big-Omega, and Big-Theta notation.
+</li>
+<li>Standard complexity classes.
+</li>
+<li>Empirical measurements of performance.
+</li>
+<li>Time and space tradeoffs in algorithms.
+</li>
+</ul>
+
+<p>
+Together with the new patterns of thinking and mind tools you have
+acquired throughout the semester, you should call upon for this
+"capstone" exploration all of your prior intuition and creativity and
+<i>curiosity</i> &#x2014; so treat this as a superlative gersy principle
+application opportunity!
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Introduction</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+We were able to learn many things from this exploration about the importance
+</p>
+
+<p>
+of algorithms and understanding how they function. Throughout this exploration
+</p>
+
+<p>
+we will explore several different ideas with the questions, and then we will
+</p>
+
+<p>
+give the solution that we were able to find.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Response to Questions</h3>
+<div class="outline-text-3" id="text-1-3">
+<ol class="org-ol">
+<li>What data structures are appropriate?
+
+<p>
+We used the data structures in calc eval
+</p>
+
+<p>
+to hold the numbers so we did not have to worry about doing our own
+</p>
+
+<p>
+big int.
+</p>
+</li>
+
+<li>What algorithm design technique(s) is/are best.
+
+<p>
+The best algorithm technique that we found was to reduce the exponential
+</p>
+
+<p>
+calcluations into logarithmic calculations. We reduced the length of 
+</p>
+
+<p>
+the calculations to ensure that the program could run much more efficiently.
+</p>
+</li>
+
+<li>What form should your program's input and output take?
+
+<p>
+INPUT: A string of the prefix numbers that we were looking for in a power of 2
+OUTPUT: the exponent of the power of 2 that gives us the matching prefix numbers.
+</p>
+</li>
+
+<li>What is/are the efficiency/complexity class(es) of your algorithm(s)?
+
+<p>
+Based on what we calculated from the function we produced the funtion was 
+</p>
+
+<p>
+linear. But there could be complexity items in calc-eval that turned it
+</p>
+
+<p>
+into an exponential function. 
+</p>
+</li>
+</ol>
+
+
+<p>
+Lower bound is constant based on just putting in a 1 or any other power
+</p>
+
+<p>
+of two.
+</p>
+
+<p>
+We do not really know what the average bound is but, if we could guess
+</p>
+
+<p>
+it will be close to the upper bound.
+</p>
+
+<ol class="org-ol">
+<li>What is the actual running time for some test runs?
+
+<p>
+"123456" 1m 28.585s
+</p>
+
+<p>
+"12345"     50.036s
+</p>
+
+<p>
+"1234"       2.258s
+</p>
+
+<p>
+"123"         .214s
+</p>
+
+<p>
+"12"          .071s
+</p>
+
+<p>
+"1"           .082s
+</p>
+</li>
+
+<li>Is this decision problem NP-Complete?
+
+<p>
+Yes, because it is possible to find the problem in polynomial time. It might
+</p>
+
+<p>
+take forever but it is possible.
+</p>
+</li>
+
+<li>What problem sizes are feasible?
+
+<p>
+7 digit numbers are probably the highest feasible size because it can
+</p>
+
+<p>
+be done in the most reasonable time of about 20 minutes.
+</p>
+</li>
+
+<li>Is there hope of ever finding your "personal" power of 2, if
+it even exists? For example, the smallest power of 2 prefixed by
+your 9-digit ID number or 10-digit phone number? What about a
+27-digit number consisting of the 9 digits of your Social Security
+number, followed by the 8 digits of your birth date (2 for month, 2
+for day, 4 for year), followed by the 10 digits of your cell phone
+number?
+
+<p>
+There is hope, because it is an infinite number so somewhere out in 
+</p>
+
+<p>
+existence. The algorithm we wrote would not be able to find it in a 
+</p>
+
+<p>
+reasonable amount of time but, potentially some other algorithm or a 
+</p>
+
+<p>
+faster computer or both could find the number in a reasonable amount of
+</p>
+
+<p>
+time. Because it is a decision problem the answer is yes.
+</p>
+</li>
+
+<li>What size of inputs can be computed in a reasonable amount of time?
+
+<p>
+Reasonable time is about 6 digit values or 2<sup>n</sup> values.
+</p>
+</li>
+
+<li>How did you increase the efficiency of the Algorithm?
+
+<p>
+We added a lower bound based on the number of digits and the 2<sup>n</sup> value
+</p>
+
+<p>
+that was just smaller or equal to that number of digits.
+</p>
+
+<p>
+We pulled calcuations that repeated themselves out of the loop.
+</p>
+
+<p>
+We also set calc-precision based on our input.
+</p>
+</li>
+
+<li>What does a string do to the algorithm as opposed to a large integer?
+
+<p>
+The string adds complexity to the algorithm by making compare functions
+</p>
+
+<p>
+have extra loops that then increase the complexity of the algorithm.
+</p>
+
+<p>
+If the numbers are reasonably small an integer container would be better
+</p>
+
+<p>
+suited to handle the calculation. As is a string is probably as efficient
+</p>
+
+<p>
+as is possible for this situation.
+</p>
+</li>
+
+<li>How does precision affect the calculation?
+
+<p>
+The precision of the calculation could determine how long each iteration took
+</p>
+
+<p>
+which could then add greatly to the amount of time that it took for us
+</p>
+
+<p>
+to calculate the final answer. The tradeoff was that precision could not
+</p>
+
+<p>
+be too small or there would be rounding errors. In the end we had to 
+</p>
+
+<p>
+keep a certain amount of precision that was ballanced in the end.
+</p>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">Conclustion</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+In conclusion we were able to find a way that we could solve the algorithm
+</p>
+
+<p>
+and were able to see some important aspects of cs306 in the real world. We
+</p>
+
+<p>
+really enjoyed this exploration and that we had the ability to learn more
+</p>
+
+<p>
+about how algorithm study and design could apply to our given field. While
+</p>
+
+<p>
+a lot of code has already been written for many algorithms understanding how 
+</p>
+
+<p>
+they work will give us an advanatage because it will help us know which 
+</p>
+
+<p>
+algorithms are best for a given situation. This exploration helped us to 
+</p>
+
+<p>
+understand that there are always tradeoffs in the algorithms that we design
+</p>
+
+<p>
+and it is important to understand that because we live in a limited world 
+</p>
+
+<p>
+there are always limits to what can be accomplished.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">Source Code</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(defun pow2digits (exp numDigits log10of2)
+  (let ((n (calc-eval "$*$$" nil exp log10of2)))
+   (calc-eval "floor(10^($ - floor($)) * 10 ^ ($$ - 1))" nil n numDigits)))
+
+(defun findLowerLimit (searchNum)
+  (calc-eval "floor(log($)/log(2))" nil searchNum))
+
+(defun search (searchNum)
+  (let ((numDigits (length searchNum))
+	(lowerBound (string-to-number(findLowerLimit searchNum)))
+	(log10of2 (calc-eval "log10(2)")))
+    (calc-precision (* numDigits 4))
+    (while (not (string= searchNum (pow2digits lowerBound numDigits log10of2)))
+      (setq lowerBound (1+ lowerBound)))
+    lowerBound))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">Vastness Sample Code</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Use the following code block as a guide and a branching point for
+your exploration, if you so desire:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(require 'bigint) ; find at http://firstthreeodds.org/cs237/bigint.el
+(require 'calc)   ; for logarithms and other high precision calculations
+(require 'cl)
+
+;; Self-documenting code (except for three functions :-)
+;; In other words, the lack of documentation is a deliberate omission
+;; to force you to read the code!
+
+(defun fractional-part-of-log-10-of (prefix)
+  (let ((log-10-of-prefix (log prefix 10)))
+    (- log-10-of-prefix (floor log-10-of-prefix))))
+
+(defconst *log-10-of-2* (log 2 10))
+
+(defun fractional-part-of-n-times-log-10-of-2 (n)
+  (let ((n-times-log-10-of-2 (* n *log-10-of-2*)))
+    (- n-times-log-10-of-2 (floor n-times-log-10-of-2))))
+
+(defun seek (prefix &amp;optional max-iterations)
+  (let ((n 1)
+	(lower (fractional-part-of-log-10-of prefix))
+	(upper (fractional-part-of-log-10-of (1+ prefix)))
+	(sought 0)
+	(found nil))
+    (setq max-iterations (if (integerp max-iterations) max-iterations most-positive-fixnum))
+    (while (and (not found) (&lt; n max-iterations))
+      (setq sought (fractional-part-of-n-times-log-10-of-2 n))
+;      (princ (format "lower sought upper: %f %f %f\n" lower sought upper))
+      (if (and (&lt; lower sought) (&lt; sought upper))
+	  (setq found n)
+	(setq n (1+ n))))
+    found))
+
+(defun verify (found prefix)
+  (let* ((calc-display-working-message nil)
+	 (power-of-2 (calc-eval (format "2^%d" found))))
+    (if (string= prefix (substring power-of-2 0 (min (length power-of-2) (length prefix))))
+	(princ (format "Verified that prefix %s was found by using calc-eval to calculate 2^%d = %s...\n"
+		       prefix found (substring power-of-2 0 (min (length power-of-2) 40))))
+      (princ (format "Not verified. Try using bc to compute 2^%d\n" found)))))
+
+(defun run (&amp;optional args-string)
+  (let* ((args (or args-string (getenv "ARGS")))
+	 (arg-list (split-string args " " t))
+	 (prefix (nth 0 arg-list))
+	 (max-iterations (if (= 2 (length arg-list)) (string-to-number (nth 1 arg-list)) 1000))
+	 (found (seek (string-to-number prefix) max-iterations)))
+    (if found
+	(verify found prefix)
+      (princ (format "The prefix %s was not found in %d iterations.\n" prefix max-iterations)))
+    t))
+
+(defun calc-log (x)
+  "Calculate the natural logarithm of x using a truncated Taylor series expansion.
+   This converges (slowly) only for x in the range -1 &lt; x &lt; 1."
+  (let ((X (1- x)))
+    (+ X (/ (* X X) -2.0) (/ (* X X X) 3.0) (/ (* X X X X) -4.0) (/ (* X X X X X) 5.0)
+       (/ (* X X X X X X) -6.0) (/ (* X X X X X X X) 7.0)
+       (/ (* X X X X X X X X) -8.0) (/ (* X X X X X X X X X) 9.0))))
+
+(defun calc-log-approx (x)
+  "This is actually better than calc-log!"
+  (let ((answer x))
+    (dotimes (i 10)
+      (setq answer (sqrt answer)))
+    (* 1024 (1- answer))))
+
+(defvar *one* (bigint-int-to-bigint 1))
+
+(defvar *two* (bigint-int-to-bigint 2))
+
+(defun power-of-2 (n)
+  (if (zerop n) *one*
+    (let* ((x *one*)
+	   (power *two*))
+      (while (&gt; n 1)
+	(cond ((= 1 (% n 2))
+	       (setq x (bigint-multiply x power))
+	       (setq n (/ (1- n) 2)))
+	      (t
+	       (setq n (/ n 2))))
+	(setq power (bigint-multiply power power)))
+      (bigint-multiply x power))))
+
+(defun power-of-2-string (n-as-string)
+  "The string-based version of power-of-2, for convenience.
+   Note n-as-string is NOT a bigint-sized number.
+   Raising 2 to more than (or even well less than) the
+   most-positive-fixnum'th power is NOT recommended."
+  (bigint-to-string (power-of-2 (string-to-number n-as-string))))
+
+(defun make-prefix-table (&amp;optional max)
+  (let ((max-prefix-size (if max max 10)))
+    (make-hash-table :size (* max-prefix-size 1000))))
+
+(defvar *prefix-table* (make-prefix-table))
+
+(defun record-prefix (prefix power-of-2)
+  (or (gethash prefix *prefix-table*)
+      (puthash prefix power-of-2 *prefix-table*)))
+
+(defun get-prefix-power (prefix)
+  (gethash prefix *prefix-table*))
+
+(defun record-each-prefix-in (bigint-as-string n)
+  (let ((len (min 10 (length bigint-as-string))))
+    (loop for i from 1 to len
+	  do (record-prefix (substring bigint-as-string 0 i) n))))
+
+(defun record-prefixes (upper-limit)
+  (loop for n from 0 to upper-limit
+	do (record-each-prefix-in (bigint-to-string (power-of-2 n)) n)))
+
+(defun display-all ()
+  (maphash (lambda (key val) (princ (format "%s --&gt; 2^%d\n" key val))) *prefix-table*))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7">What is True?</h3>
+<div class="outline-text-3" id="text-1-7">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(defun what-is-true-about-my-engagement-with-vastness ()
+  "If need be, replace a 100 with a smaller number to reflect how much you feel you deserve."
+  (vector
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true of my experience in general?                              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["I learned something new." 2]
+["I achieved something meaningful, or something I can build upon at a later time." 2]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true of my report on what I learned?                            ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["It shows some evidence of a curious mind at work." 3]
+["It shows ample evidence of a curious mind at work." 4]
+["It shows vast evidence of a curious mind at work." 5]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true about how I justified my answers to the previous question? ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["I treated this exploration as a superlative gersy principle application opportunity." 2]
+["I enhanced my way of thinking about hard problems." 2]
+["I somewhat addressed the first of the partial list of eight questions." 2]
+["I thoroughly addressed the first of the partial list of eight questions." 2]
+["I *clearly* addressed the first of the partial list of eight questions." 2]
+["I somewhat addressed the second of the partial list of eight questions." 2]
+["I thoroughly addressed the second of the partial list of eight questions. " 2]
+["I *clearly* addressed the second of the partial list of eight questions." 2]
+["I somewhat addressed the third of the partial list of eight questions.  " 2]
+["I thoroughly addressed the third of the partial list of eight questions." 2]
+["I *clearly* addressed the third of the partial list of eight questions." 2]
+["I somewhat addressed the fourth of the partial list of eight questions.  " 2]
+["I thoroughly addressed the fourth of the partial list of eight questions." 2]
+["I *clearly* addressed the fourth of the partial list of eight questions." 2]
+["I somewhat addressed the fifth of the partial list of eight questions.  " 2]
+["I thoroughly addressed the fifth of the partial list of eight questions." 2]
+["I *clearly* addressed the fifth of the partial list of eight questions." 2]
+["I somewhat addressed the sixth of the partial list of eight questions.  " 2]
+["I thoroughly addressed the sixth of the partial list of eight questions." 2]
+["I *clearly* addressed the sixth of the partial list of eight questions." 2]
+["I somewhat addressed the seventh of the partial list of eight questions.  " 2]
+["I thoroughly addressed the seventh of the partial list of eight questions." 2]
+["I *clearly* addressed the seventh of the partial list of eight questions." 2]
+["I somewhat addressed the eighth of the partial list of eight questions.  " 2]
+["I thoroughly addressed the eighth of the partial list of eight questions." 2]
+["I *clearly* addressed the eighth of the partial list of eight questions." 2]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true of how I met the creative challenge of coming up           ;;
+;; with more questions?                                                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["I thought of and *clearly* addressed at least two additional questions." 4]
+["I thought of and *clearly* addressed at least four additional questions." 5]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true of the mechanical "infelicities" (misspelled words,        ;;
+;; grammatical errors, punctuation errors) in my report on what I learned? ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["There are fewer than four." 2]
+["There are fewer than three." 2]
+["There are fewer than two." 2]
+["There are none." 2]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; What is true about the efficiency of my code?                           ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+["It solves the decision problem in O(infinity) time." 1]
+["It solves the decision problem in O(superexponential) time." 2]
+["It solves the decision problem in O(exponential) time." 3]
+["It solves the decision problem in O(polynomial) time." 4]
+["It solves the decision problem in constant time." 5]
+))
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Rick Neff</p>
+<p class="date">Created: 2015-12-11 Fri 21:18</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

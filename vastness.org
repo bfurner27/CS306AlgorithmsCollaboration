@@ -56,8 +56,18 @@ acquired throughout the semester, you should call upon for this
 /curiosity/ --- so treat this as a superlative gersy principle
 application opportunity!
 
-The following is a partial list of questions you should address ---
-thinking of others is part of the creative challenge:
+** Introduction
+   
+   We were able to learn many things from this exploration about the importance
+
+   of algorithms and understanding how they function. Throughout this exploration
+
+   we will explore several different ideas with the questions, and then we will
+
+   give the solution that we were able to find.
+
+** Response to Questions
+
 
       1. What data structures are appropriate?
 
@@ -98,12 +108,24 @@ thinking of others is part of the creative challenge:
 	 it will be close to the upper bound.
 
       5. What is the actual running time for some test runs?
-
 	 
+         "123456" 1m 28.585s
+      
+         "12345"     50.036s
+
+         "1234"       2.258s
+
+         "123"         .214s
+
+         "12"          .071s
+
+         "1"           .082s
 
       6. Is this decision problem NP-Complete?
 
-	 
+	 Yes, because it is possible to find the problem in polynomial time. It might
+
+	 take forever but it is possible.
 
       7. What problem sizes are feasible?
 
@@ -129,22 +151,89 @@ thinking of others is part of the creative challenge:
 
 	 time. Because it is a decision problem the answer is yes.
 
-** Expectations
+      9. What size of inputs can be computed in a reasonable amount of time?
 
-   In addition to writing elisp code, you are expected to write a
-   report having a good introduction (stating the goal of this
-   activity) and conclusion (summarizing your results), and using
-   correct grammar and spelling throughout.
+	 Reasonable time is about 6 digit values or 2^n values.
+ 
+      10. How did you increase the efficiency of the Algorithm?
 
-   You are also expected to use *org mode* to write your report.
+	  We added a lower bound based on the number of digits and the 2^n value
 
-** Grading Criteria
+	  that was just smaller or equal to that number of digits.
 
-   Grading for this exploration is based on application and engagement
-   (whether or not or to what extent you figured out the hows and the
-   whys), correctness and completeness, and creativity and
-   efficiency. Details, as usual, are in the self-assessment.
+	  We pulled calcuations that repeated themselves out of the loop.
 
+	  We also set calc-precision based on our input.
+
+      11. What does a string do to the algorithm as opposed to a large integer?
+
+	  The string adds complexity to the algorithm by making compare functions
+
+	  have extra loops that then increase the complexity of the algorithm.
+
+	  If the numbers are reasonably small an integer container would be better
+
+	  suited to handle the calculation. As is a string is probably as efficient
+
+	  as is possible for this situation.
+
+      12. How does precision affect the calculation?
+
+	  The precision of the calculation could determine how long each iteration took
+
+	  which could then add greatly to the amount of time that it took for us
+
+	  to calculate the final answer. The tradeoff was that precision could not
+
+	  be too small or there would be rounding errors. In the end we had to 
+
+	  keep a certain amount of precision that was ballanced in the end.
+
+** Conclustion
+
+   In conclusion we were able to find a way that we could solve the algorithm
+
+   and were able to see some important aspects of cs306 in the real world. We
+
+   really enjoyed this exploration and that we had the ability to learn more
+
+   about how algorithm study and design could apply to our given field. While
+
+   a lot of code has already been written for many algorithms understanding how 
+
+   they work will give us an advanatage because it will help us know which 
+
+   algorithms are best for a given situation. This exploration helped us to 
+
+   understand that there are always tradeoffs in the algorithms that we design
+
+   and it is important to understand that because we live in a limited world 
+
+   there are always limits to what can be accomplished.
+
+** Source Code
+
+
+#+BEGIN_SRC emacs-lisp
+
+(defun pow2digits (exp numDigits log10of2)
+  (let ((n (calc-eval "$*$$" nil exp log10of2)))
+   (calc-eval "floor(10^($ - floor($)) * 10 ^ ($$ - 1))" nil n numDigits)))
+
+(defun findLowerLimit (searchNum)
+  (calc-eval "floor(log($)/log(2))" nil searchNum))
+
+(defun search (searchNum)
+  (let ((numDigits (length searchNum))
+	(lowerBound (string-to-number(findLowerLimit searchNum)))
+	(log10of2 (calc-eval "log10(2)")))
+    (calc-precision (* numDigits 4))
+    (while (not (string= searchNum (pow2digits lowerBound numDigits log10of2)))
+      (setq lowerBound (1+ lowerBound)))
+    lowerBound))
+
+
+#+END_SRC
 ** Vastness Sample Code
 
   Use the following code block as a guide and a branching point for
@@ -278,74 +367,74 @@ thinking of others is part of the creative challenge:
 ;; What is true of my experience in general?                              ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-["I learned something new." 2]
-["I achieved something meaningful, or something I can build upon at a later time." 2]
+["I learned something new." 100]
+["I achieved something meaningful, or something I can build upon at a later time." 100]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; What is true of my report on what I learned?                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-["It shows some evidence of a curious mind at work." 3]
-["It shows ample evidence of a curious mind at work." 4]
-["It shows vast evidence of a curious mind at work." 5]
+["It shows some evidence of a curious mind at work." 100]
+["It shows ample evidence of a curious mind at work." 100]
+["It shows vast evidence of a curious mind at work." 100]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; What is true about how I justified my answers to the previous question? ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-["I treated this exploration as a superlative gersy principle application opportunity." 2]
-["I enhanced my way of thinking about hard problems." 2]
-["I somewhat addressed the first of the partial list of eight questions." 2]
-["I thoroughly addressed the first of the partial list of eight questions." 2]
-["I *clearly* addressed the first of the partial list of eight questions." 2]
-["I somewhat addressed the second of the partial list of eight questions." 2]
-["I thoroughly addressed the second of the partial list of eight questions. " 2]
-["I *clearly* addressed the second of the partial list of eight questions." 2]
-["I somewhat addressed the third of the partial list of eight questions.  " 2]
-["I thoroughly addressed the third of the partial list of eight questions." 2]
-["I *clearly* addressed the third of the partial list of eight questions." 2]
-["I somewhat addressed the fourth of the partial list of eight questions.  " 2]
-["I thoroughly addressed the fourth of the partial list of eight questions." 2]
-["I *clearly* addressed the fourth of the partial list of eight questions." 2]
-["I somewhat addressed the fifth of the partial list of eight questions.  " 2]
-["I thoroughly addressed the fifth of the partial list of eight questions." 2]
-["I *clearly* addressed the fifth of the partial list of eight questions." 2]
-["I somewhat addressed the sixth of the partial list of eight questions.  " 2]
-["I thoroughly addressed the sixth of the partial list of eight questions." 2]
-["I *clearly* addressed the sixth of the partial list of eight questions." 2]
-["I somewhat addressed the seventh of the partial list of eight questions.  " 2]
-["I thoroughly addressed the seventh of the partial list of eight questions." 2]
-["I *clearly* addressed the seventh of the partial list of eight questions." 2]
-["I somewhat addressed the eighth of the partial list of eight questions.  " 2]
-["I thoroughly addressed the eighth of the partial list of eight questions." 2]
-["I *clearly* addressed the eighth of the partial list of eight questions." 2]
+["I treated this exploration as a superlative gersy principle application opportunity." 100]
+["I enhanced my way of thinking about hard problems." 100]
+["I somewhat addressed the first of the partial list of eight questions." 100]
+["I thoroughly addressed the first of the partial list of eight questions." 100]
+["I *clearly* addressed the first of the partial list of eight questions." 100]
+["I somewhat addressed the second of the partial list of eight questions." 100]
+["I thoroughly addressed the second of the partial list of eight questions. " 100]
+["I *clearly* addressed the second of the partial list of eight questions." 100]
+["I somewhat addressed the third of the partial list of eight questions.  " 100]
+["I thoroughly addressed the third of the partial list of eight questions." 100]
+["I *clearly* addressed the third of the partial list of eight questions." 100]
+["I somewhat addressed the fourth of the partial list of eight questions.  " 100]
+["I thoroughly addressed the fourth of the partial list of eight questions." 100]
+["I *clearly* addressed the fourth of the partial list of eight questions." 100]
+["I somewhat addressed the fifth of the partial list of eight questions.  " 100]
+["I thoroughly addressed the fifth of the partial list of eight questions." 100]
+["I *clearly* addressed the fifth of the partial list of eight questions." 100]
+["I somewhat addressed the sixth of the partial list of eight questions.  " 100]
+["I thoroughly addressed the sixth of the partial list of eight questions." 100]
+["I *clearly* addressed the sixth of the partial list of eight questions." 100]
+["I somewhat addressed the seventh of the partial list of eight questions.  " 100]
+["I thoroughly addressed the seventh of the partial list of eight questions." 100]
+["I *clearly* addressed the seventh of the partial list of eight questions." 100]
+["I somewhat addressed the eighth of the partial list of eight questions.  " 100]
+["I thoroughly addressed the eighth of the partial list of eight questions." 100]
+["I *clearly* addressed the eighth of the partial list of eight questions." 100]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; What is true of how I met the creative challenge of coming up           ;;
 ;; with more questions?                                                    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-["I thought of and *clearly* addressed at least two additional questions." 4]
-["I thought of and *clearly* addressed at least four additional questions." 5]
+["I thought of and *clearly* addressed at least two additional questions." 100]
+["I thought of and *clearly* addressed at least four additional questions." 100]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; What is true of the mechanical "infelicities" (misspelled words,        ;;
 ;; grammatical errors, punctuation errors) in my report on what I learned? ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-["There are fewer than four." 2]
-["There are fewer than three." 2]
-["There are fewer than two." 2]
-["There are none." 2]
+["There are fewer than four." 100]
+["There are fewer than three." 100]
+["There are fewer than two." 100]
+["There are none." 100]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; What is true about the efficiency of my code?                           ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-["It solves the decision problem in O(infinity) time." 1]
-["It solves the decision problem in O(superexponential) time." 2]
-["It solves the decision problem in O(exponential) time." 3]
-["It solves the decision problem in O(polynomial) time." 4]
-["It solves the decision problem in constant time." 5]
+["It solves the decision problem in O(infinity) time." 100]
+["It solves the decision problem in O(superexponential) time." 100]
+["It solves the decision problem in O(exponential) time." 100]
+["It solves the decision problem in O(polynomial) time." 100]
+["It solves the decision problem in constant time." 100]
 ))
 #+END_SRC
