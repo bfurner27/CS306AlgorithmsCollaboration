@@ -519,7 +519,7 @@ END
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ["I discussed to what extent I am or desire to get good at dealing with situations where different rules apply in different cases." 100]
-["I discussed to what extent I am or desire to be able to rapidly change levels of abstraction." 1]
+["I discussed to what extent I am or desire to be able to rapidly change levels of abstraction." 100]
 ["I discussed to what extent I can or desire to simultaneously see things in the large and in the small." 100]
 
 ))

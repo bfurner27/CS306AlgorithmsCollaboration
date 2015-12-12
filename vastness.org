@@ -1,7 +1,7 @@
 
 #+TITLE: Vastness
-#+AUTHOR: Rick Neff
-#+EMAIL:  NeffR@byui.edu
+#+AUTHOR: Daniel Miller
+#+EMAIL:  mil12010@byui.edu
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
 

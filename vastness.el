@@ -9,8 +9,10 @@
   (let ((numDigits (length searchNum))
 	(lowerBound (string-to-number(findLowerLimit searchNum)))
 	(log10of2 (calc-eval "log10(2)")))
-    (calc-precision (* numDigits 4))
+    (calc-precision (* numDigits 3))
     (while (not (string= searchNum (pow2digits lowerBound numDigits log10of2)))
       (setq lowerBound (1+ lowerBound)))
     lowerBound))
+
+
 
