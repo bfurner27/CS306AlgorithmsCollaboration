@@ -1,112 +1,17 @@
+This will be the first collaboration file for inquisitiveness
 
-#+TITLE: Inquisitiveness
-#+AUTHOR: Daniel Miller
-#+EMAIL:  mil12010@byui.edu
-#+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+Sorts we are using
+n^2 Insertion, Swap
+n log n Merge, Heap
 
-* EN10
+3 Languages
+Java, C++, elisp/python
 
-  You are invited to inquisitively evaluate algorithm efficiency using
-  Big-Oh *and* empirical measurements. This invitation to exploration
-  is codenamed /Inquisitiveness/.
 
-** Background
+n^2 sorts in three different languages
 
-   - /Empirical/ means based on experimental data, not on a theory.
-   - It means originating in or based upon observation or experience;
-     capable of being verified or disproved by observation or
-     experiment;
-   - It is derived from observation, experience or experiment rather
-     than from conjecture, hypothesis or theory.
 
-   So, empirical information is based on perception with the five
-   senses rather than thinking and rationalism. In other words, it is
-   based on /practical/ experience. It is often called /benchmarking/.
-
-*** General Plan for Empirical Experimentation
-
-    1. Understand the experiment's purpose.
-    2. Decide on the efficiency metric *M* to be measured and the
-       measurement unit (an operation's count or a time unit).
-    3. Decide on characteristics of the input sample (its range,
-       size, and so on).
-    4. Prepare a program implementing the algorithm (or
-       algorithms) for the experimentation.
-    5. Generate a sample of inputs.
-    6. Run the algorithm (or algorithms) on the sample's inputs
-       and record the data observed.
-    7. Analyze the data obtained.
-
-*** Important Points
-
-    Three points to bear in mind when analyzing algorithm efficiency
-    empirically in the context of this exploration:
-
-    1. You are *not* given specific algorithms to measure and compare,
-       just specific algorithm *types*.
-    2. You thus have great latitude in how to conduct and report on
-       your experiments, so use your cohort collaboration to the max.
-    3. You may study/use any code found in http://firstthreeodds.org/cs306/empirical.zip
-
-** Requirements
-
-   Implement two "n-squared" sorting algorithms and two "n log n"
-   algorithms of your choice using any language you choose (mixing languages
-   if you choose, but see the questions below). Analyze the four algorithms
-   and show how you found the running times for each. Do an empirical
-   measurement of the running times on each of the four algorithms and
-   compare the results with the theoretical running time. When doing the
-   empirical measurements, you will probably need to loop over most
-   problem sizes several times so they produce measurable run times.
-   Make available all code and scripts you use to obtain the running times.
-
-   For maximum benefit, treat this as an open-ended project, and
-   explore some additional factors affecting runtime. For example,
-   answer these questions, and then some:
-
-   1. How does the language (Java, C++, etc.),
-      including compiler switches, affect performance?
-   2. How does the data type (*int*, *float*, etc.) to be sorted
-      affect performance?
-   3. When does overhead from recursion affect performance?
-   4. How does the operating system affect the performance of the algorithms? 
-   5. How do the theoretical running time and the empirical running time
-      compare? If they are different, why are they different?
-   6. How does optimization of a compiler affect performance?
-   7. What are the pros and cons of each algorithm based on
-      the theoretical and the empirical analysis?
-   8. Are there situations where a slow algorithm is acceptable to use
-      in an application?
-   9. Are there situations where a fast algorithms might be the only option?
-
-** Expectations
-
-   - Do work that you can take pride in reporting on.
-   - Make your report look and feel professional --- which for starters
-     means to eradicate all mechanical infelicities.
-   - Include an introduction (clearly stating the goal(s) of this
-     activity) and a conclusion (summarizing the analysis).
-   - Mention the hardware, compiler, timers used, and any and all
-     assumptions made.
-   - *Be specific* about what the best case,
-     average case, and worst case are for each algorithm.
-   - Include a comparison of timings for each sort. It's acceptable
-     and desirable to plot your timings for multiple sorts on the same
-     graph, but also include a table of your timings.
-   - Include a comparison of the two "n-squared" algorithms and a
-     comparison of the two "n log n" algorithms, but *NOT* a
-     comparison of an "n-squared" with an "n log n" algorithm, which
-     doesn't make sense.
-
-** Writeup
-*** Introduction
-    We were invited to inquisitively evaluate algorithm efficiency using
-    Big-Oh *and* empirical measurements.
-*** Recorded Information
-**** Algorithms
-
-Java Algorithm swap sort
+* Java Algorithm swap sort
 #+BEGIN_SRC java
 /**************************************************************
  * Program: SortArray
@@ -228,7 +133,7 @@ public class SortArray {
 }
 #+end_src
 
-C++ Algorithm swap sort
+* C++ Algorithm swap sort
 #+begin_src c
 /******************************************************************
  * Swap Sort takes two parameters
@@ -702,7 +607,7 @@ void testsToF()
 }
 
 #+end_src
-Python Algorithm swap sort
+* Python Algorithm swap sort
 #+BEGIN_SRC py
 //sorry I could not get the file to read correctly but daniel should have
 // that part up and running from his so just plug the function in and it 
@@ -718,7 +623,7 @@ def selection_sort(lst):
         lst[i], lst[mn] = lst[mn], e
     return lst
 #+END_SRC
-Java Algorithm insert sort
+* Java Algorithm insert sort
 
 #+BEGIN_SRC java
 import java.util.ArrayList;
@@ -773,7 +678,8 @@ class InsertSortJava
 
 }
 #+END_SRC
-C++ Algorithm insert sort
+* C++ Algorithm insert sort
+     Fixed Compliation problems sorry about not getting that working before
 #+begin_src c
 #include <iostream>
 #include <fstream>
@@ -865,7 +771,7 @@ void insertSort(T array[], int sizeArray)
     }
 }
 #+end_src
-ELisp Algorithm insert sort (later decided on using python)
+* ELisp Algorithm insert sort
 #+BEGIN_SRC elisp 
 (defun min-or-max-of-2-numbers (n1 n2 rel)
   "n1 and n2 are two numbers, rel can be '< or '> according to
@@ -907,198 +813,8 @@ according to rel"
 	      lon)
 	     rel))
     nil))
-#+END_SRC
-
-**** Data
-***** nlogn
-| Heap Sort           | 10 | 100 |    1K |   10K |  100k |     1M |     10M |
-|---------------------+----+-----+-------+-------+-------+--------+---------|
-| C++(int)(Linux)(O4) |  0 |   0 |     0 |     0 |  0.01 |   0.12 |    1.03 |
-| C++(int)            |  0 |   0 |     0 | 0.002 | 0.023 |  0.322 |   5.009 |
-| C++(O0)             |  0 |   0 |     0 | 0.001 | 0.024 |  0.339 |    5.04 |
-| C++(O2)             |  0 |   0 |     0 | 0.001 | 0.013 |   0.21 |   3.609 |
-| C++(O4)             |  0 |   0 |     0 | 0.001 | 0.014 |  0.187 |   3.369 |
-| Java(int)           |  0 |   0 | 0.005 | 0.013 | 0.088 |  1.548 |  21.584 |
-| Python(int)         |  0 |   0 | 0.004 | 0.061 | 0.761 |  9.692 | 132.114 |
-| Python(float)       |  0 |   0 | 0.004 | 0.073 | 1.003 |  11.86 |  163.32 |
-| Python(string)      |  0 |   0 | 0.005 | 0.074 | 0.953 | 12.724 | 169.435 |
-
-							
-| Merge Sort           | 10 |   100 |    1K |   10K |  100k |     1M |     10M |
-|----------------------+----+-------+-------+-------+-------+--------+---------|
-| C++(int)(Linux)(O4)  |  0 |     0 |     0 |     0 |  0.01 |   0.13 |    0.86 |
-| C++(int)(Linux)      |  0 |     0 |     0 |     0 |  0.04 |   0.38 |    2.45 |
-| C++(int)(recursive)  |  0 |     0 |     0 | 0.005 | 0.061 |  0.523 |   6.412 |
-| C++(O0)              |  0 |     0 | 0.001 | 0.006 | 0.053 |  0.537 |   5.793 |
-| C++(O2)              |  0 |     0 | 0.001 | 0.003 | 0.031 |  0.249 |   2.603 |
-| C++(O4)              |  0 |     0 |     0 | 0.003 | 0.023 |  0.217 |   2.261 |
-| Java(int)(iterative) |  0 |     0 | 0.003 | 0.018 | 0.175 |  0.582 |   5.713 |
-| Java(int)(recursive) |  0 | 0.003 | 0.014 | 0.053 | 0.201 |   1.22 |  11.612 |
-| Python(int)          |  0 |     0 | 0.008 | 0.101 | 1.092 | 13.529 | 153.349 |
-| Python(float)        |  0 |     0 |  0.01 | 0.111 | 1.313 | 14.379 | 168.875 |
-| Python(string)       |  0 | 0.001 |  0.01 | 0.116 | 1.497 | 16.468 | 202.003 |
-
-***** n^2						
-| Swap Sort      | 10 |   100 |    1K |   10K |    100k |       1M | 10M |
-|----------------+----+-------+-------+-------+---------+----------+-----|
-| C++(int(linux) |  0 |     0 |     0 |  0.12 |   11.85 |          |     |
-| C++(int)       |  0 |     0 | 0.001 | 0.114 |  11.237 |  1152.69 |     |
-| C++(int) O0    |  0 |     0 | 0.002 | 0.116 |  11.219 |          |     |
-| C++(int) O2    |  0 |     0 | 0.001 | 0.032 |   3.209 |  331.451 |     |
-| C++(int) O4    |  0 |     0 | 0.001 | 0.069 |   7.089 |  704.553 |     |
-| Java(int)      |  0 | 0.001 | 0.021 | 0.201 |  27.139 | 5951.401 |     |
-| Python(int)    |  0 |     0 | 0.038 | 4.028 | 457.473 |          |     |
-| Python(float)  |  0 |     0 | 0.039 | 4.159 | 565.546 |          |     |
-| Python(string) |  0 |     0 | 0.055 | 4.776 | 729.787 |          |     |
-
-| Insert Sort    | 10 | 100 |    1K |   10K |    100k |       1M | 10M |
-| C++(int(linux) |  0 |   0 |     0 |  0.08 |     7.4 |          |     |
-| C++(int)       |  0 |   0 | 0.001 | 0.066 |   7.081 |  703.538 |     |
-| C++(int) O0    |  0 |   0 | 0.001 | 0.068 |   6.782 |          |     |
-| C++(int) O2    |  0 |   0 |     0 | 0.018 |   1.392 |  143.711 |     |
-| C++(int) O4    |  0 |   0 | 0.001 | 0.014 |   1.393 |  142.347 |     |
-| Java(int)      |  0 |   0 | 0.007 | 0.056 |   4.438 | 2291.981 |     |
-| Python(int)    |  0 |   0 |  0.03 |  2.99 | 342.045 |          |     |
-| Python(float)  |  0 |   0 |  0.04 | 3.722 | 490.596 |          |     |
-| Python(string) |  0 |   0 | 0.034 | 4.289 | 570.824 |          |     |
-
-*** Questions
-**** How does the language (Java, C++, etc.), including compiler switches, affect performance?
-     The language made quite a difference when running our algorithms when we 
-     were doing tests of 1 million integers we found the tests were not even 
-     feasable when running the n^2 tests in python. We even were running past
-     two minutes when doing 10 million integers in python. It is important to 
-     note that Python uses C++ liberaries and so is even faster than a lot of
-     other scripting languages.
-**** How does the data type (*int*, *float*, etc.) to be sorted affect performance?
-     We found this pretty obvious. For the data types, ints are faster to sort
-     than floats which are faster to sort than strings. This is because ints are
-     the basic unit in computer science and represented as the base 2 of
-     the number input. The float datatype requires more information like what
-     the exponentiality of the number is. The string is the hardest to compare
-     simply because you are doing a comparison over each of the characters till
-     you find one that does not match. More comparisons means more computational
-     power to do.
-**** When does overhead from recursion affect performance?
-     The recursive approach was about half as fast as the iterative approach.
-     This is because recursion is an optimization blocker. If one has taken
-     Computer Architecture then they know that each function call adds, at 
-     minimum, three bubbles into your program because of the system needing to
-     stall before knowing where to return to.
-**** How does the operating system affect the performance of the algorithms? 
-     This was not clear. Though the data above would indicate that running the
-     program on a linux computer is the obvious choice, this is a biased data
-     set. Our computers each have Windows and run at nearly the same speed,
-     however, the computer lab is able to run at much higher speeds due to the
-     setup. Though I am not certain of all the details of the linux lab, I do
-     suspect that if I were to put linux on my own computer and run these tests
-     they would not come out in such a sort amount of time.
-**** How do the theoretical running time and the empirical running time compare? If they are different, why are they different?
-     The empirical running time is always slower than the theoretical. This is
-     due to a few reasons. First, we do not have other processes running in
-     the theoretical world and so the computer is able to focus on one job.
-     Second, there are no fluxuations of any sort that would slow the job down.
-     Third, memory allocation and other factors that increase time do not exist
-     in the theoretical world.
-**** How does optimization of a compiler affect performance?
-     In short, optimization of a compiler increases the algorithms performance.
-     This is because the compiler is making use of some of the assembly tricks
-     that will increase performance. Some of these tricks include moving
-     recursive calls to iterative loops, passing other values than eax, removing
-     unnessisary code, etc.
-**** What are the pros and cons of each algorithm based on the theoretical and the empirical analysis?
-***** Heap
-****** Pros
-       - Fastest high level language (Python) algorithm for large amounts of data.
-       - Algorithm is easy to understand and implement compared to many other
-	 nlogn algorithms.
-****** Cons
-       - For lower level languages (C++) this is slower than other nlogn algorithms.
-       - Not able to easily implement a recursive implementation.
-***** Merge
-****** Pros
-       - Fastest high level language (Python) algorithm for large amounts of data.
-       - Easy to implement a recursive implementation due to the nature of 
-	 the algorithm.
-****** Cons
-       - For lower level languages (C++) this is slower than other nlogn algorithms.
-       - Harder to implement than other algorithms like the Heap Sort.
-***** Swap
-****** Pros
-       - Fastest low level language (C++) algorithm for large amounts of data.
-       - Algorithm is easy to understand and implement compared to many other
-	 nlogn algorithms.
-****** Cons
-       - For higher level languages (Python) this is slower than other nlogn algorithms.
-       - Not able to easily implement a recursive implementation.
-***** Insert
-****** Pros
-       - Fastest high level language (Python) algorithm for large amounts of data.
-       - Easy to implement a recursive implementation due to the nature of 
-	 the algorithm.
-****** Cons
-       - For lower level languages (C++) this is slower than other nlogn algorithms.
-       - Harder to implement than other algorithms like the Heap Sort.
-**** Are there situations where a slow algorithm is acceptable to use in an application?
-**** Are there situations where a fast algorithms might be the only option?
-**** Are there situations wehre "slow" algorithms (n^2) are the better choice?
-
-** What is True?
-
-#+BEGIN_SRC emacs-lisp
-(defun what-is-true-about-my-engagement-with-inquisitiveness ()
-  "If need be, replace a 100 with a smaller number to reflect how much you feel you deserve."
-  (vector
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; What is true of my experience in general?                              ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-["I collaborated with the classmates in my cohort." 100]
-["I learned something new." 100]
-["I achieved something meaningful, or something I can build upon at a later time." 100]
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; What is true of my report on what I learned?                            ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-["I learned more about emacs 'org' mode in my use of it to write my report." 100]
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; What is true about my meeting explicit requirements?                    ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-["I explored factors affecting runtime, and answered at least 5 of the 9 questions." 100]
-["I explored factors affecting runtime, and answered at least 6 of the 9 questions." 100]
-["I explored factors affecting runtime, and answered at least 7 of the 9 questions." 100]
-["I explored factors affecting runtime, and answered at least 8 of the 9 questions." 100]
-["I explored factors affecting runtime, and answered all of the 9 questions, and a few more of my own." 100]
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; What is true of the mechanical "infelicities" (misspelled words,        ;;
-;; grammatical errors, punctuation errors) in my report on what I learned? ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-["There are fewer than four." 100]
-["There are fewer than three." 100]
-["There are fewer than two." 100]
-["There are none." 100]
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; What is otherwise true of the quality of the information in my report?  ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-["Each detail contributes to the report's purpose, with no distracting, extraneous information." 100]
-["There are no unstated assumptions, and the arguments are logical and concise." 100]
-["As confirmed by having someone not in my cohort read it, the reader can readily see what is going on in my head." 100]
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; What is otherwise true of the organization of my report?                ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-["My report's information is presented in a logical sequence, easily followed." 100]
-["My report has a strong introduction, clearly stating the goal of this exploration." 100]
-["My report has a strong conclusion, summarizing my analysis." 100]
-["My report has pithy headings to guide the information flow." 100]
-["The information flow in my report has engaging transitions that entice the reader to read further." 100]
-))
+ 
+;;; let's try it :
+ 
+(sort-insertion (list 1 2 3 9 8 7 25 12 3 2 1) '>)
 #+END_SRC
