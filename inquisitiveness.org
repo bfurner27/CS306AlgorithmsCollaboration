@@ -9,7 +9,7 @@
 
   You are invited to inquisitively evaluate algorithm efficiency using
   Big-Oh *and* empirical measurements. This invitation to exploration
-  is codenamed /Inquisitiveness/.
+  is code-named /Inquisitiveness/.
 
 ** Background
 
@@ -107,7 +107,7 @@
 **** Algorithms
 
 Java Algorithm swap sort
-#+BEGIN_SRC java
+#+BEGIN_SRC Java
 /**************************************************************
  * Program: SortArray
  * Author: Benjamin Furner
@@ -163,7 +163,7 @@ public class SortArray {
 		System.out.println("Unsorted Array");
 		List<Integer> array = new ArrayList<>(); 
 
-		// generate the list of numbers with a psudo random order
+		// generate the list of numbers with a pseudo random order
 		for (int i = 1; i <= arraySize; i++) {
 			// this will take the unsorted list and will improve it
 		    array.add(((i*52 + 2) % (arraySize * 2) % arraySize));
@@ -214,7 +214,7 @@ public class SortArray {
     			}
     		}
 
-    		// these will swap the i'th element with the smallest item in the remaider of the list
+    		// these will swap the i'th element with the smallest item in the remainder of the list
     		int temp = array.get(i);
     		array.set(i, array.get(smallestItemIndex));
     		array.set(smallestItemIndex, temp);
@@ -258,7 +258,7 @@ void testsToF();
  * Description: Will drive the program that will run/test the sort
  *
  * INPUT:  argc - the number of arguments
- *         argv - the actual aurguments as a string
+ *         argv - the actual arguments as a string
  * OUTPUT: NONE
  * RETURN: returns a 0 to terminate the program
  *****************************************************************/
@@ -386,7 +386,7 @@ int main(int argc, char** argv)
 	}
 	else 
 	{
-		cout << "Command Line Aurgument array expected, input the array on the command line\n";
+		cout << "Command Line Argument array expected, input the array on the command line\n";
 	}
 	return 0;
 }
@@ -704,7 +704,7 @@ void testsToF()
 #+end_src
 Python Algorithm swap sort
 #+BEGIN_SRC py
-//sorry I could not get the file to read correctly but daniel should have
+//sorry I could not get the file to read correctly but Daniel should have
 // that part up and running from his so just plug the function in and it 
 // should work the same
 def main(filename)
@@ -758,7 +758,7 @@ class InsertSortJava
     }
 
     
-    // retrieved from rosetta code.com
+    // retrieved from Rosetta code.com
     public void insertSort(Integer array[]){
 	for(int i = 1; i < array.length; i++){
 	    int value = array[i];
@@ -844,7 +844,7 @@ void insertSort(T array[], int sizeArray)
 	{
 
 	  // check if the array value at j is less than the value we are trying to insert
-	  // this will ensure we are inserting only if the value immediately preceeding it
+	  // this will ensure we are inserting only if the value immediately preceding it
 	  // is smaller
 	  if (array[j] < tempVal)
 	    {
@@ -865,7 +865,7 @@ void insertSort(T array[], int sizeArray)
     }
 }
 #+end_src
-ELisp Algorithm insert sort (later decided on using python)
+E-Lisp Algorithm insert sort (later decided on using python)
 #+BEGIN_SRC elisp 
 (defun min-or-max-of-2-numbers (n1 n2 rel)
   "n1 and n2 are two numbers, rel can be '< or '> according to
@@ -876,7 +876,7 @@ or smaller number n1 or n2"
    (t n2)))
  
 (defun min-or-max-of-a-list (lon rel)
-  "lon is a list of numbers, rel is '< or '>, this fonction
+  "lon is a list of numbers, rel is '< or '>, this function
 returns the higher or lower number of the list"
   (if (cdr lon)
       (min-or-max-of-2-numbers (car lon) 
@@ -939,42 +939,42 @@ according to rel"
 | Python(string)       |  0 | 0.001 |  0.01 | 0.116 | 1.497 | 16.468 | 202.003 |
 
 ***** n^2						
-| Swap Sort      | 10 |   100 |    1K |   10K |    100k |       1M | 10M |
-|----------------+----+-------+-------+-------+---------+----------+-----|
-| C++(int(linux) |  0 |     0 |     0 |  0.12 |   11.85 |          |     |
-| C++(int)       |  0 |     0 | 0.001 | 0.114 |  11.237 |  1152.69 |     |
-| C++(int) O0    |  0 |     0 | 0.002 | 0.116 |  11.219 |          |     |
-| C++(int) O2    |  0 |     0 | 0.001 | 0.032 |   3.209 |  331.451 |     |
-| C++(int) O4    |  0 |     0 | 0.001 | 0.069 |   7.089 |  704.553 |     |
-| Java(int)      |  0 | 0.001 | 0.021 | 0.201 |  27.139 | 5951.401 |     |
-| Python(int)    |  0 |     0 | 0.038 | 4.028 | 457.473 |          |     |
-| Python(float)  |  0 |     0 | 0.039 | 4.159 | 565.546 |          |     |
-| Python(string) |  0 |     0 | 0.055 | 4.776 | 729.787 |          |     |
+| Swap Sort       | 10 |   100 |    1K |   10K |    100k |       1M | 10M |
+|-----------------+----+-------+-------+-------+---------+----------+-----|
+| C++(int)(Linux) |  0 |     0 |     0 |  0.12 |   11.85 |          |     |
+| C++(int)        |  0 |     0 | 0.001 | 0.114 |  11.237 |  1152.69 |     |
+| C++(int) O0     |  0 |     0 | 0.002 | 0.116 |  11.219 |          |     |
+| C++(int) O2     |  0 |     0 | 0.001 | 0.032 |   3.209 |  331.451 |     |
+| C++(int) O4     |  0 |     0 | 0.001 | 0.069 |   7.089 |  704.553 |     |
+| Java(int)       |  0 | 0.001 | 0.021 | 0.201 |  27.139 | 5951.401 |     |
+| Python(int)     |  0 |     0 | 0.038 | 4.028 | 457.473 |          |     |
+| Python(float)   |  0 |     0 | 0.039 | 4.159 | 565.546 |          |     |
+| Python(string)  |  0 |     0 | 0.055 | 4.776 | 729.787 |          |     |
 
-| Insert Sort    | 10 | 100 |    1K |   10K |    100k |       1M | 10M |
-| C++(int(linux) |  0 |   0 |     0 |  0.08 |     7.4 |          |     |
-| C++(int)       |  0 |   0 | 0.001 | 0.066 |   7.081 |  703.538 |     |
-| C++(int) O0    |  0 |   0 | 0.001 | 0.068 |   6.782 |          |     |
-| C++(int) O2    |  0 |   0 |     0 | 0.018 |   1.392 |  143.711 |     |
-| C++(int) O4    |  0 |   0 | 0.001 | 0.014 |   1.393 |  142.347 |     |
-| Java(int)      |  0 |   0 | 0.007 | 0.056 |   4.438 | 2291.981 |     |
-| Python(int)    |  0 |   0 |  0.03 |  2.99 | 342.045 |          |     |
-| Python(float)  |  0 |   0 |  0.04 | 3.722 | 490.596 |          |     |
-| Python(string) |  0 |   0 | 0.034 | 4.289 | 570.824 |          |     |
+| Insert Sort     | 10 | 100 |    1K |   10K |    100k |       1M | 10M |
+| C++(int)(Linux) |  0 |   0 |     0 |  0.08 |     7.4 |          |     |
+| C++(int)        |  0 |   0 | 0.001 | 0.066 |   7.081 |  703.538 |     |
+| C++(int) O0     |  0 |   0 | 0.001 | 0.068 |   6.782 |          |     |
+| C++(int) O2     |  0 |   0 |     0 | 0.018 |   1.392 |  143.711 |     |
+| C++(int) O4     |  0 |   0 | 0.001 | 0.014 |   1.393 |  142.347 |     |
+| Java(int)       |  0 |   0 | 0.007 | 0.056 |   4.438 | 2291.981 |     |
+| Python(int)     |  0 |   0 |  0.03 |  2.99 | 342.045 |          |     |
+| Python(float)   |  0 |   0 |  0.04 | 3.722 | 490.596 |          |     |
+| Python(string)  |  0 |   0 | 0.034 | 4.289 | 570.824 |          |     |
 
 *** Questions
 **** How does the language (Java, C++, etc.), including compiler switches, affect performance?
      The language made quite a difference when running our algorithms when we 
      were doing tests of 1 million integers we found the tests were not even 
-     feasable when running the n^2 tests in python. We even were running past
+     feasible when running the n^2 tests in python. We even were running past
      two minutes when doing 10 million integers in python. It is important to 
-     note that Python uses C++ liberaries and so is even faster than a lot of
+     note that Python uses C++ libraries and so is even faster than a lot of
      other scripting languages.
 **** How does the data type (*int*, *float*, etc.) to be sorted affect performance?
      We found this pretty obvious. For the data types, ints are faster to sort
      than floats which are faster to sort than strings. This is because ints are
      the basic unit in computer science and represented as the base 2 of
-     the number input. The float datatype requires more information like what
+     the number input. The float data type requires more information like what
      the exponentiality of the number is. The string is the hardest to compare
      simply because you are doing a comparison over each of the characters till
      you find one that does not match. More comparisons means more computational
@@ -987,11 +987,11 @@ according to rel"
      stall before knowing where to return to.
 **** How does the operating system affect the performance of the algorithms? 
      This was not clear. Though the data above would indicate that running the
-     program on a linux computer is the obvious choice, this is a biased data
+     program on a Linux computer is the obvious choice, this is a biased data
      set. Our computers each have Windows and run at nearly the same speed,
      however, the computer lab is able to run at much higher speeds due to the
-     setup. Though I am not certain of all the details of the linux lab, I do
-     suspect that if I were to put linux on my own computer and run these tests
+     setup. Though I am not certain of all the details of the Linux lab, I do
+     suspect that if I were to put Linux on my own computer and run these tests
      they would not come out in such a sort amount of time.
 **** How do the theoretical running time and the empirical running time compare? If they are different, why are they different?
      The empirical running time is always slower than the theoretical. This is
@@ -1005,7 +1005,7 @@ according to rel"
      This is because the compiler is making use of some of the assembly tricks
      that will increase performance. Some of these tricks include moving
      recursive calls to iterative loops, passing other values than eax, removing
-     unnessisary code, etc.
+     unnecessary code, etc.
 **** What are the pros and cons of each algorithm based on the theoretical and the empirical analysis?
 ***** Heap
 ****** Pros
@@ -1025,24 +1025,31 @@ according to rel"
        - Harder to implement than other algorithms like the Heap Sort.
 ***** Swap
 ****** Pros
-       - Fastest low level language (C++) algorithm for large amounts of data.
-       - Algorithm is easy to understand and implement compared to many other
-	 nlogn algorithms.
+       - Algorithm is easy to understand 
+       - Easy to implement compared to many other n^2 algorithms.
 ****** Cons
-       - For higher level languages (Python) this is slower than other nlogn algorithms.
-       - Not able to easily implement a recursive implementation.
+       - Slower than other n^2 sorts like Insert Sort
+       - Is no faster on a partially sorted array
 ***** Insert
 ****** Pros
-       - Fastest high level language (Python) algorithm for large amounts of data.
-       - Easy to implement a recursive implementation due to the nature of 
-	 the algorithm.
+       - Fairly easy to implement with a linear search
+       - If a backwards linear search is used, it is much faster on an partially sorted array
 ****** Cons
-       - For lower level languages (C++) this is slower than other nlogn algorithms.
-       - Harder to implement than other algorithms like the Heap Sort.
+       - On an array, insertion is slow because all the elements after it have to be moved up.
 **** Are there situations where a slow algorithm is acceptable to use in an application?
+     Yes, any n^2 algorithm is reasonably acceptable when the size is 1000 items or less.
 **** Are there situations where a fast algorithms might be the only option?
-**** Are there situations wehre "slow" algorithms (n^2) are the better choice?
-
+     Yes, When the amount of items is above 1000 it becomes necessary to use
+     a "fast" algorithm such as one of our nlogn sorts.
+**** Are there situations where "slow" algorithms (n^2) are the better choice?
+     At first I thought that there would be a time when using the n^2 algorithms
+     would be faster but looking at our data we are not able to see any time when
+     using a n^2 algorithm would actually be faster.
+**** Are there situations where any of these sorts become unacceptable?
+     Yes, when sorting over 1 billion with any sort, it is good to start thinking
+     about how you can go about doing what you desire without sorting the items
+     first. When you try and sort that many items it starts taking to long to use any 
+     algorithm to sort the array.
 ** What is True?
 
 #+BEGIN_SRC emacs-lisp
